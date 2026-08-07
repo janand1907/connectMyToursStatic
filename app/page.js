@@ -1,7 +1,9 @@
 import Hero from "@/components/home/Hero";
-import WhyChooseUs from "@/components/home/WhyChooseUs";
+import TrustSection from "@/components/home/TrustSection";
 import PopularPackages from "@/components/home/PopularPackages";
-import HowItWorks from "@/components/home/HowItWorks";
+import WhyChooseUs from "@/components/home/WhyChooseUs";
+import TravelInformation from "@/components/home/TravelInformation";
+import NRISection from "@/components/home/NRISection";
 import Testimonials from "@/components/home/Testimonials";
 import FAQPreview from "@/components/home/FAQPreview";
 import ContactCTA from "@/components/home/ContactCTA";
@@ -14,12 +16,14 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <WhyChooseUs />
+      <TrustSection />
       <PopularPackages />
-      <HowItWorks />
+      <WhyChooseUs />
+      <TravelInformation />
+      <NRISection />
       <Testimonials />
-      <EnquirySection sourceLabel="home_page" />
       <FAQPreview />
+      <EnquirySection sourceLabel="home_page" />
       <ContactCTA />
     </>
   );

@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { siteConfig } from "@/config/site";
-import { WhatsAppIcon, XMarkIcon, CheckCircleIcon, SparklesIcon } from "@/components/icons";
+import { WhatsAppIcon, XMarkIcon, CheckCircleIcon, SparklesIcon, PhoneIcon } from "@/components/icons";
 
 // Timer-based reopen behaviour — no sessionStorage/localStorage/cookies, so the
 // popup keeps resurfacing for the whole visit rather than being dismissed forever.
@@ -61,17 +60,6 @@ export default function PromoPopup() {
     }, EXIT_ANIMATION_MS);
   }
 
-  function handlePlanTrip(event) {
-    event.preventDefault();
-    close();
-    const target = document.getElementById("enquiry");
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      window.location.href = "/#enquiry";
-    }
-  }
-
   if (!mounted) return null;
 
   return (
@@ -99,33 +87,16 @@ export default function PromoPopup() {
           <XMarkIcon className="h-5 w-5" />
         </button>
 
-        <div className="relative aspect-[16/9] w-full">
-          <Image
-            src="/images/hero-temple.jpg"
-            alt="Sri Venkateswara Temple gopuram at Tirumala"
-            fill
-            sizes="(min-width: 640px) 448px, 100vw"
-            className="object-cover"
-            priority={false}
-          />
-        </div>
-
-        <div className="p-6 sm:p-8">
-          <div className="flex items-center justify-center gap-2">
-            <Image src="/logo.svg" alt="Connect My Tours logo" width={120} height={42} className="h-6 w-auto" />
-            <span className="text-primary-200" aria-hidden="true">
-              •
-            </span>
-            <p className="text-xs font-semibold uppercase tracking-wide text-primary-600">
-              Independent Pilgrimage Assistance
-            </p>
-          </div>
+        <div className="p-6 pt-10 sm:p-8 sm:pt-10">
+          <p className="text-center text-xs font-semibold uppercase tracking-wide text-primary-600">
+            {siteConfig.name} <span className="text-primary-200">•</span> Independent Pilgrimage Assistance
+          </p>
 
           <h2
             id="promo-popup-heading"
             className="mt-3 text-center font-display text-2xl font-bold text-primary-900 sm:text-3xl"
           >
-            Get Free Tirupati Travel Assistance
+            Get Free Tirupati Pilgrimage Assistance
           </h2>
 
           <div className="mt-4 flex justify-center">
@@ -166,8 +137,9 @@ export default function PromoPopup() {
           </p>
 
           <div className="mt-6 flex flex-col gap-3">
-            <a href="#enquiry" onClick={handlePlanTrip} className="btn-primary w-full">
-              Plan My Trip
+            <a href={`tel:${siteConfig.phone}`} onClick={close} className="btn-primary w-full">
+              <PhoneIcon className="h-5 w-5" />
+              Speak to a Consultant
             </a>
             <a
               href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(siteConfig.whatsappDefaultMessage)}`}
@@ -177,7 +149,7 @@ export default function PromoPopup() {
               className="btn-whatsapp w-full"
             >
               <WhatsAppIcon className="h-5 w-5" />
-              WhatsApp
+              Connect Instantly on WhatsApp
             </a>
           </div>
         </div>

@@ -92,11 +92,6 @@ export default function Footer() {
           </div>
         </div>
         <p className="container-page pb-6 text-[11px] leading-relaxed text-white/50">{footerDisclaimer}</p>
-        <p className="container-page pb-6 text-[11px] leading-relaxed text-white/40">
-          Temple photography via Wikimedia Commons — Adityamadhav83, Nikhilb239, eclicks_by_bunny,
-          and Chandrashekhar Basumatary (CC BY-SA / CC BY); Bhaskaranaidu and Vimalkalyan (public
-          domain). Images are unmodified in content, cropped only for display.
-        </p>
       </div>
     </footer>
   );
