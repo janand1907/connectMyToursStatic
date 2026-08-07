@@ -228,3 +228,20 @@ export function XMarkIcon({ className }) {
     </svg>
   );
 }
+
+export function UserIcon({ className }) {
+  return (
+    <svg {...base} className={className}>
+      <circle cx="12" cy="8" r="3.5" />
+      <path d="M5 20a7 7 0 0114 0" />
+    </svg>
+  );
+}
+
+export function ChevronDownIcon({ className }) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  );
+}

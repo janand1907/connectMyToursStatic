@@ -7,7 +7,7 @@ import { PhoneIcon, WhatsAppIcon, MailIcon, ClockIcon, MapPinIcon } from "@/comp
 
 export default function Footer() {
   return (
-    <footer className="mt-16 bg-primary-900 text-white">
+    <footer className="bg-primary-900 text-white">
       <div className="container-page grid gap-12 py-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-16 lg:py-16">
         <div>
           <span className="inline-flex rounded-lg bg-white p-2">

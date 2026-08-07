@@ -87,56 +87,56 @@ export default function PromoPopup() {
           <XMarkIcon className="h-5 w-5" />
         </button>
 
-        <div className="p-6 pt-10 sm:p-8 sm:pt-10">
-          <p className="text-center text-xs font-semibold uppercase tracking-wide text-primary-600">
+        <div className="p-5 pt-9 sm:p-6 sm:pt-9">
+          <p className="text-center text-[11px] font-semibold uppercase tracking-wide text-primary-600">
             {siteConfig.name} <span className="text-primary-200">•</span> Independent Pilgrimage Assistance
           </p>
 
           <h2
             id="promo-popup-heading"
-            className="mt-3 text-center font-display text-2xl font-bold text-primary-900 sm:text-3xl"
+            className="mt-2 text-center font-display text-xl font-bold leading-tight text-primary-900 sm:text-2xl"
           >
             Get Free Tirupati Pilgrimage Assistance
           </h2>
 
-          <div className="mt-4 flex justify-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-600 px-4 py-1.5 text-xs font-semibold text-white">
-              <SparklesIcon className="h-4 w-4" />
+          <div className="mt-3 flex justify-center">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-600 px-3.5 py-1 text-[11px] font-semibold text-white">
+              <SparklesIcon className="h-3.5 w-3.5" />
               Multi-City Departures • Dedicated Coordinator Support
             </span>
           </div>
 
-          <div className="mt-6 rounded-2xl bg-primary-50 p-5">
-            <p className="text-xs font-bold uppercase tracking-wide text-primary-700">
+          <div className="mt-4 rounded-2xl bg-primary-50 p-4">
+            <p className="text-[11px] font-bold uppercase tracking-wide text-primary-700">
               Plan Your Tirupati Pilgrimage From
             </p>
-            <ul className="mt-3 space-y-2">
+            <ul className="mt-2 space-y-1.5">
               {departureCities.map((city) => (
-                <li key={city} className="flex items-start gap-2 text-sm text-neutral-700">
-                  <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-primary-600" />
+                <li key={city} className="flex items-start gap-1.5 text-sm text-neutral-700">
+                  <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" />
                   <span>Tirupati travel packages from {city}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="mt-4 rounded-2xl bg-neutral-50 p-5">
-            <p className="text-xs font-bold uppercase tracking-wide text-neutral-500">What We Help Coordinate</p>
-            <ul className="mt-3 space-y-2">
+          <div className="mt-3 rounded-2xl bg-neutral-50 p-4">
+            <p className="text-[11px] font-bold uppercase tracking-wide text-neutral-500">What We Help Coordinate</p>
+            <ul className="mt-2 space-y-1.5">
               {coordinationPoints.map((point) => (
-                <li key={point} className="flex items-start gap-2 text-sm text-neutral-700">
-                  <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-primary-600" />
+                <li key={point} className="flex items-start gap-1.5 text-sm text-neutral-700">
+                  <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" />
                   <span>{point}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <p className="mt-5 text-center text-sm italic text-neutral-500">
+          <p className="mt-3 text-center text-xs italic text-neutral-500">
             Clarity, coordination, and peace of mind — every step of your pilgrimage.
           </p>
 
-          <div className="mt-6 flex flex-col gap-3">
+          <div className="mt-4 flex flex-col gap-2.5">
             <a href={`tel:${siteConfig.phone}`} onClick={close} className="btn-primary w-full">
               <PhoneIcon className="h-5 w-5" />
               Speak to a Consultant
