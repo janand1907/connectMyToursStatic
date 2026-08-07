@@ -128,6 +128,35 @@ export const bangaloreCity = {
       },
     ],
   },
+  pickupLocations: {
+    heading: "Pickup Locations in Bangalore",
+    subheading: "Coordinated pickup points our travel partners commonly use for pilgrims departing from Bangalore.",
+    items: [
+      { icon: MapPinIcon, title: "Majestic (Bangalore City Railway Station)", description: "A central pickup point for pilgrims travelling by train." },
+      { icon: MapPinIcon, title: "Kempegowda International Airport", description: "Coordinated pickup for pilgrims flying into Bangalore before onward travel." },
+      { icon: MapPinIcon, title: "Electronic City & Silk Board", description: "A common pickup corridor for pilgrims in south Bangalore." },
+      { icon: MapPinIcon, title: "Whitefield & Marathahalli", description: "Pickup coordination for pilgrims travelling from Bangalore's eastern IT corridor." },
+    ],
+  },
+  vehicleOptions: {
+    heading: "Vehicle Options for Your Journey",
+    subheading: "We coordinate a range of vehicles to suit group size and comfort for the Bangalore–Tirumala route via Chittoor.",
+    items: [
+      { icon: CarIcon, title: "Sedan (Up to 4)", description: "A comfortable choice for solo travellers, couples, or small families." },
+      { icon: CarIcon, title: "SUV (Up to 7)", description: "Extra legroom for the longer Bangalore–Chittoor–Tirumala drive." },
+      { icon: BusIcon, title: "Tempo Traveller (12–17)", description: "Suited for larger families or group pilgrimages from Bangalore." },
+      { icon: BusIcon, title: "Sleeper Coach", description: "Coordinated for overnight group travel on the longer Bangalore route." },
+    ],
+  },
+  journeyDuration: {
+    heading: "Journey Duration Options from Bangalore",
+    subheading: "With around 255 km to cover via Chittoor, most pilgrims from Bangalore prefer to pace their trip over more than one day.",
+    items: [
+      { icon: ClockIcon, title: "Same-Day Trip", description: "Possible but tiring given the distance — better suited to fit and time-pressed travellers." },
+      { icon: ClockIcon, title: "Overnight (2 Days / 1 Night)", description: "The most common choice from Bangalore, allowing rest before darshan." },
+      { icon: ClockIcon, title: "Extended (3 Days / 2 Nights)", description: "A relaxed pace, popular with families combining the trip with nearby sightseeing." },
+    ],
+  },
   journeyTimeline: {
     heading: "Journey Timeline from Bangalore",
     steps: [
@@ -160,6 +189,16 @@ export const bangaloreCity = {
       ],
     },
   },
+  templeTimings: {
+    heading: "Temple Timings & Darshan Windows",
+    subheading:
+      "General guidance on Tirumala's darshan windows to help pilgrims travelling from Bangalore plan arrival timing — always confirm current timings with TTD directly.",
+    items: [
+      { icon: ClockIcon, title: "Suprabhata Seva", description: "The temple's day begins with this pre-dawn ritual, timed according to TTD's calendar." },
+      { icon: ClockIcon, title: "Sarva Darshan (General)", description: "The general queue operates for most of the day; actual wait time depends on season and footfall." },
+      { icon: ClockIcon, title: "Special Entry Darshan", description: "A separate ticketed queue managed entirely by TTD, subject to availability." },
+    ],
+  },
   accommodation: {
     heading: "Accommodation Assistance",
     subheading: "We help coordinate a comfortable stay near Tirumala so you're not left arranging it last-minute.",
@@ -167,6 +206,16 @@ export const bangaloreCity = {
       { icon: HotelIcon, title: "Hotel Coordination", description: "Coordination with hotels near Tirumala and Tirupati across a range of budgets." },
       { icon: ClockIcon, title: "Timed to Your Darshan Slot", description: "Stay arrangements timed around your travel and darshan schedule where possible." },
       { icon: UsersIcon, title: "Family & Group Friendly", description: "Options coordinated for solo pilgrims, families, and larger groups travelling together." },
+    ],
+  },
+  bestTimeToVisit: {
+    heading: "Best Time to Visit Tirupati from Bangalore",
+    subheading: "Since the Bangalore–Tirumala route runs through the Chittoor hills, weather can affect the drive as well as your darshan experience.",
+    items: [
+      { icon: LightBulbIcon, title: "Winter (Nov–Feb)", description: "Cool weather on the ghat road makes this the most comfortable season to travel from Bangalore." },
+      { icon: SparklesIcon, title: "Summer (Mar–Jun)", description: "Warm across the route — an early start from Bangalore helps you arrive before the afternoon heat." },
+      { icon: CompassIcon, title: "Monsoon (Jul–Sep)", description: "The Chittoor hills turn green, though rain can occasionally slow the ghat road." },
+      { icon: ClockIcon, title: "Festival Season (Brahmotsavam)", description: "Expect heavier traffic on the route and crowded darshan queues — plan well ahead." },
     ],
   },
   faqs: [
@@ -236,6 +285,26 @@ export const bangaloreCity = {
       { icon: BackpackIcon, title: "Carry ID Proof", description: "Keep a valid photo ID handy — it's required at various checkpoints and for darshan queues." },
       { icon: LightBulbIcon, title: "Check Weather", description: "Tirumala's hill weather can differ from Bangalore's — pack accordingly." },
       { icon: UsersIcon, title: "Elderly & Children", description: "Let your coordinator know in advance if you're travelling with elderly members or young children." },
+    ],
+  },
+  dressCode: {
+    heading: "Dress Code for Darshan",
+    subheading: "TTD prescribes a dress code for darshan — here's what pilgrims travelling from Bangalore should know before packing.",
+    items: [
+      { icon: ShieldCheckIcon, title: "Men", description: "Dhoti/pyjama with an upper cloth, or formal trousers with a shirt, is the customary expectation." },
+      { icon: ShieldCheckIcon, title: "Women", description: "Sarees, half-sarees, or salwar kameez are generally preferred for darshan." },
+      { icon: CheckCircleIcon, title: "Children", description: "No strict dress code applies to children, though modest clothing is recommended." },
+      { icon: CheckCircleIcon, title: "Special Entry Darshan", description: "Stricter attire rules may apply for special entry darshan — check with your coordinator closer to your travel date." },
+    ],
+  },
+  requiredDocuments: {
+    heading: "Documents to Carry",
+    subheading: "Keep these documents ready for your trip from Bangalore — TTD and transport checkpoints may ask to verify identity.",
+    items: [
+      { icon: BackpackIcon, title: "Valid Photo ID", description: "Aadhaar, PAN, driving licence, or passport for every adult in your group." },
+      { icon: BackpackIcon, title: "ID for Minors", description: "A birth certificate or school ID usually suffices for children travelling with family." },
+      { icon: CheckCircleIcon, title: "Booking Confirmations", description: "Keep printed or downloaded copies of your travel and stay coordination details handy." },
+      { icon: CheckCircleIcon, title: "Document Copies", description: "Carry a spare photocopy or photo of your ID separate from the original." },
     ],
   },
   thingsToCarry: {

@@ -129,6 +129,35 @@ export const hyderabadCity = {
       },
     ],
   },
+  pickupLocations: {
+    heading: "Pickup Locations in Hyderabad",
+    subheading: "Coordinated pickup points our travel partners commonly use for pilgrims departing from Hyderabad, with particular focus on airport transfers.",
+    items: [
+      { icon: MapPinIcon, title: "Rajiv Gandhi International Airport (Shamshabad)", description: "Our most common pickup point, coordinated around your flight's arrival." },
+      { icon: MapPinIcon, title: "Secunderabad & Hyderabad Deccan", description: "Pickup coordination for pilgrims travelling by train." },
+      { icon: MapPinIcon, title: "Hitech City & Gachibowli", description: "A common pickup corridor for pilgrims in west Hyderabad." },
+      { icon: MapPinIcon, title: "Begumpet", description: "An additional pickup point for pilgrims in central Hyderabad." },
+    ],
+  },
+  vehicleOptions: {
+    heading: "Vehicle Options for Your Journey",
+    subheading: "We coordinate airport transfer and road vehicles to suit your group size, especially for pilgrims flying into Hyderabad.",
+    items: [
+      { icon: CarIcon, title: "Sedan Airport Transfer (Up to 4)", description: "A comfortable choice for solo travellers or couples flying in." },
+      { icon: CarIcon, title: "SUV Airport Transfer (Up to 7)", description: "Extra space for families flying in with luggage." },
+      { icon: BusIcon, title: "Tempo Traveller (12–17)", description: "Suited for larger family or group pilgrimages arriving together." },
+      { icon: BusIcon, title: "Sleeper Coach", description: "Coordinated for pilgrims choosing the overnight road route instead of flying." },
+    ],
+  },
+  journeyDuration: {
+    heading: "Journey Duration Options from Hyderabad",
+    subheading: "At around 555 km, the distance from Hyderabad makes flying the most time-efficient option, though road and rail alternatives exist.",
+    items: [
+      { icon: ClockIcon, title: "Fly & Return Same Day", description: "Possible for a very tight schedule, though most pilgrims prefer at least one overnight stay." },
+      { icon: ClockIcon, title: "Overnight (2 Days / 1 Night)", description: "The most practical option for pilgrims flying in from Hyderabad." },
+      { icon: ClockIcon, title: "Extended (3 Days / 2 Nights)", description: "A relaxed pace for families, especially those combining the trip with nearby sightseeing." },
+    ],
+  },
   journeyTimeline: {
     heading: "Journey Timeline from Hyderabad",
     steps: [
@@ -161,6 +190,16 @@ export const hyderabadCity = {
       ],
     },
   },
+  templeTimings: {
+    heading: "Temple Timings & Darshan Windows",
+    subheading:
+      "General guidance on Tirumala's darshan windows to help pilgrims flying in from Hyderabad plan their arrival — always confirm current timings with TTD directly.",
+    items: [
+      { icon: ClockIcon, title: "Suprabhata Seva", description: "A pre-dawn ritual that opens the temple's daily schedule, timed according to TTD's calendar." },
+      { icon: ClockIcon, title: "Sarva Darshan (General)", description: "The general queue runs through most of the day; wait times vary with season and footfall." },
+      { icon: ClockIcon, title: "Special Entry Darshan", description: "A separate ticketed queue that our NRI Darshan Package can help align with your flight schedule, subject to TTD's availability." },
+    ],
+  },
   accommodation: {
     heading: "Accommodation Assistance",
     subheading: "We help coordinate a comfortable stay near Tirumala so you're not left arranging it last-minute.",
@@ -168,6 +207,16 @@ export const hyderabadCity = {
       { icon: HotelIcon, title: "Hotel Coordination", description: "Coordination with hotels near Tirumala and Tirupati across a range of budgets." },
       { icon: ClockIcon, title: "Timed to Your Darshan Slot", description: "Stay arrangements timed around your travel and darshan schedule where possible." },
       { icon: UsersIcon, title: "Family & Group Friendly", description: "Options coordinated for solo pilgrims, families, and larger groups travelling together." },
+    ],
+  },
+  bestTimeToVisit: {
+    heading: "Best Time to Visit Tirupati from Hyderabad",
+    subheading: "Since most pilgrims from Hyderabad travel by air, weather has less impact on the journey itself but still shapes the darshan experience.",
+    items: [
+      { icon: LightBulbIcon, title: "Winter (Nov–Feb)", description: "Pleasant weather at Tirumala and a comfortable season for flying in from Hyderabad." },
+      { icon: SparklesIcon, title: "Summer (Mar–Jun)", description: "Hot at Tirumala — flying in on an early morning slot helps you start the day before the heat sets in." },
+      { icon: CompassIcon, title: "Monsoon (Jul–Sep)", description: "Greener surroundings at Tirumala, with occasional flight delays during heavy rain." },
+      { icon: ClockIcon, title: "Festival Season (Brahmotsavam)", description: "Flights and darshan slots fill up quickly — NRI and overseas travellers should book well ahead." },
     ],
   },
   faqs: [
@@ -237,6 +286,26 @@ export const hyderabadCity = {
       { icon: BackpackIcon, title: "Carry ID Proof", description: "Keep a valid photo ID handy — it's required at various checkpoints and for darshan queues." },
       { icon: LightBulbIcon, title: "Check Weather", description: "Tirumala's hill weather can differ from Hyderabad's — pack accordingly." },
       { icon: UsersIcon, title: "Elderly & Children", description: "Let your coordinator know in advance if you're travelling with elderly members or young children." },
+    ],
+  },
+  dressCode: {
+    heading: "Dress Code for Darshan",
+    subheading: "TTD prescribes a dress code for darshan — here's what pilgrims and NRI travellers flying in from Hyderabad should know before packing.",
+    items: [
+      { icon: ShieldCheckIcon, title: "Men", description: "Dhoti/pyjama with an upper cloth, or formal trousers with a shirt, is generally expected for darshan." },
+      { icon: ShieldCheckIcon, title: "Women", description: "Sarees, half-sarees, or salwar kameez are the customary choice." },
+      { icon: CheckCircleIcon, title: "Children", description: "No strict dress code applies to children, though modest clothing is advisable." },
+      { icon: CheckCircleIcon, title: "NRI & Overseas Travellers", description: "We're happy to explain TTD's current dress expectations in advance so nothing is unfamiliar on arrival." },
+    ],
+  },
+  requiredDocuments: {
+    heading: "Documents to Carry",
+    subheading: "Keep these documents ready for your trip from Hyderabad — especially important for NRI and overseas travellers passing through airport checks.",
+    items: [
+      { icon: BackpackIcon, title: "Valid Photo ID / Passport", description: "Aadhaar or driving licence for domestic travellers; passport and OCI/visa documents for NRI and overseas pilgrims." },
+      { icon: BackpackIcon, title: "ID for Minors", description: "A birth certificate, school ID, or passport, depending on whether travel is domestic or international." },
+      { icon: CheckCircleIcon, title: "Flight & Booking Confirmations", description: "Printed or downloaded copies of your flight tickets and coordinated travel details." },
+      { icon: CheckCircleIcon, title: "Document Copies", description: "Carry a spare photocopy or photo of your ID and passport separate from the originals." },
     ],
   },
   thingsToCarry: {

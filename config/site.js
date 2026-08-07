@@ -3,7 +3,7 @@ export const siteConfig = {
   domain: "https://www.connectmytours.com",
   legalName: "Connect My Tours",
   tagline: "Independent Tirupati pilgrimage travel assistance",
-  email: "divinebalajitravels@gmail.com",
+  email: "connectmytours@gmail.com",
   enquiryRecipientEmail: "connectmytours@gmail.com",
   phone: "+91-99947-51079",
   phoneDisplay: "+91 99947 51079",

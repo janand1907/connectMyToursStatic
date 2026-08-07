@@ -19,7 +19,14 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-export const metadata = pageMetadata("/");
+export const metadata = {
+  ...pageMetadata("/"),
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
+};
 
 export default function RootLayout({ children }) {
   return (

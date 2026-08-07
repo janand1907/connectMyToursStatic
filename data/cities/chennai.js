@@ -128,6 +128,35 @@ export const chennaiCity = {
       },
     ],
   },
+  pickupLocations: {
+    heading: "Pickup Locations in Chennai",
+    subheading: "Coordinated pickup points our travel partners commonly use for pilgrims departing from Chennai.",
+    items: [
+      { icon: MapPinIcon, title: "Chennai Central & Egmore", description: "Convenient pickup near Chennai's main railway stations for train travellers." },
+      { icon: MapPinIcon, title: "Chennai International Airport", description: "Coordinated pickup for pilgrims flying into Chennai before onward travel." },
+      { icon: MapPinIcon, title: "T. Nagar & Guindy", description: "A common pickup point for pilgrims in central and south Chennai." },
+      { icon: MapPinIcon, title: "OMR & Tambaram Corridor", description: "Pickup coordination for pilgrims travelling from Chennai's IT corridor and southern suburbs." },
+    ],
+  },
+  vehicleOptions: {
+    heading: "Vehicle Options for Your Journey",
+    subheading: "We coordinate a range of vehicles to suit group size and comfort for the Chennai–Tirumala route.",
+    items: [
+      { icon: CarIcon, title: "Sedan (Up to 4)", description: "A comfortable choice for solo travellers, couples, or small families." },
+      { icon: CarIcon, title: "SUV (Up to 7)", description: "Extra space and comfort for families travelling together." },
+      { icon: BusIcon, title: "Tempo Traveller (12–17)", description: "Suited for larger families or group pilgrimages from Chennai." },
+      { icon: BusIcon, title: "Coach / Mini-Bus", description: "Coordinated for large group and corporate pilgrimage bookings." },
+    ],
+  },
+  journeyDuration: {
+    heading: "Journey Duration Options from Chennai",
+    subheading: "Chennai's relatively short distance to Tirumala gives pilgrims flexibility in how they pace their trip.",
+    items: [
+      { icon: ClockIcon, title: "Same-Day Trip", description: "Possible from Chennai given the shorter distance, though it makes for a long day." },
+      { icon: ClockIcon, title: "Overnight (2 Days / 1 Night)", description: "The most popular option — comfortable pacing with time to rest before darshan." },
+      { icon: ClockIcon, title: "Extended (3 Days / 2 Nights)", description: "A relaxed pace for families or pilgrims wanting to include nearby sightseeing." },
+    ],
+  },
   journeyTimeline: {
     heading: "Journey Timeline from Chennai",
     steps: [
@@ -160,6 +189,16 @@ export const chennaiCity = {
       ],
     },
   },
+  templeTimings: {
+    heading: "Temple Timings & Darshan Windows",
+    subheading:
+      "General guidance on Tirumala's darshan windows to help pilgrims travelling from Chennai plan arrival timing — always confirm current timings with TTD directly.",
+    items: [
+      { icon: ClockIcon, title: "Suprabhata Seva", description: "An early pre-dawn ritual marking the start of the temple's daily schedule, subject to TTD's calendar." },
+      { icon: ClockIcon, title: "Sarva Darshan (General)", description: "The standard darshan queue runs through most of the day, with timing and wait subject to season and demand." },
+      { icon: ClockIcon, title: "Special Entry Darshan", description: "A separate ticketed queue offered by TTD, subject to availability and TTD's own booking process." },
+    ],
+  },
   accommodation: {
     heading: "Accommodation Assistance",
     subheading: "We help coordinate a comfortable stay near Tirumala so you're not left arranging it last-minute.",
@@ -167,6 +206,16 @@ export const chennaiCity = {
       { icon: HotelIcon, title: "Hotel Coordination", description: "Coordination with hotels near Tirumala and Tirupati across a range of budgets." },
       { icon: ClockIcon, title: "Timed to Your Darshan Slot", description: "Stay arrangements timed around your travel and darshan schedule where possible." },
       { icon: UsersIcon, title: "Family & Group Friendly", description: "Options coordinated for solo pilgrims, families, and larger groups travelling together." },
+    ],
+  },
+  bestTimeToVisit: {
+    heading: "Best Time to Visit Tirupati from Chennai",
+    subheading: "Given the short travel time from Chennai, pilgrims can plan around Tirumala's seasons rather than travel logistics.",
+    items: [
+      { icon: LightBulbIcon, title: "Winter (Nov–Feb)", description: "Cool, comfortable weather makes this the most popular season to travel from Chennai." },
+      { icon: SparklesIcon, title: "Summer (Mar–Jun)", description: "Hot in both Chennai and Tirupati — an early morning departure helps beat the heat." },
+      { icon: CompassIcon, title: "Monsoon (Jul–Sep)", description: "Lush surroundings on the ghat road, with occasional rain affecting travel time." },
+      { icon: ClockIcon, title: "Festival Season (Brahmotsavam)", description: "Very high footfall — book well in advance if travelling from Chennai during this period." },
     ],
   },
   faqs: [
@@ -236,6 +285,26 @@ export const chennaiCity = {
       { icon: BackpackIcon, title: "Carry ID Proof", description: "Keep a valid photo ID handy — it's required at various checkpoints and for darshan queues." },
       { icon: LightBulbIcon, title: "Check Weather", description: "Tirumala's hill weather can be cooler and wetter than Chennai — pack accordingly." },
       { icon: UsersIcon, title: "Elderly & Children", description: "Let your coordinator know in advance if you're travelling with elderly members or young children." },
+    ],
+  },
+  dressCode: {
+    heading: "Dress Code for Darshan",
+    subheading: "TTD prescribes a dress code for darshan — here's what pilgrims travelling from Chennai should know before packing.",
+    items: [
+      { icon: ShieldCheckIcon, title: "Men", description: "Traditional attire such as dhoti/pyjama with an upper cloth, or formal trousers with a shirt, is generally expected." },
+      { icon: ShieldCheckIcon, title: "Women", description: "Sarees, half-sarees, or salwar kameez are the customary choice for darshan." },
+      { icon: CheckCircleIcon, title: "Children", description: "Children are generally not required to follow a strict dress code, though modest clothing is advisable." },
+      { icon: CheckCircleIcon, title: "Special Entry Darshan", description: "TTD may apply stricter dress requirements for special entry darshan — we'll confirm current rules for your visit." },
+    ],
+  },
+  requiredDocuments: {
+    heading: "Documents to Carry",
+    subheading: "Keep these documents ready for your trip from Chennai — TTD and transport checkpoints may ask to verify identity.",
+    items: [
+      { icon: BackpackIcon, title: "Valid Photo ID", description: "Aadhaar, PAN, driving licence, or passport for every adult traveller." },
+      { icon: BackpackIcon, title: "ID for Minors", description: "A birth certificate or school ID is generally sufficient for children travelling with family." },
+      { icon: CheckCircleIcon, title: "Booking Confirmations", description: "Printed or downloaded copies of your travel and accommodation coordination details." },
+      { icon: CheckCircleIcon, title: "Document Copies", description: "Keep a spare photocopy or photo of your ID separate from the original, just in case." },
     ],
   },
   thingsToCarry: {

@@ -50,11 +50,21 @@ export default function CityPageTemplate({ city, packages, breadcrumbItems, path
 
       <FeatureGrid {...city.travelOptions} muted />
 
+      <FeatureGrid {...city.pickupLocations} />
+
+      <FeatureGrid {...city.vehicleOptions} muted />
+
+      <FeatureGrid {...city.journeyDuration} />
+
       <JourneyTimeline {...city.journeyTimeline} />
 
       <DarshanInfoSection {...city.darshanInfo} />
 
+      <FeatureGrid {...city.templeTimings} muted />
+
       <FeatureGrid {...city.accommodation} columns={3} />
+
+      <FeatureGrid {...city.bestTimeToVisit} muted />
 
       <CityFAQSection faqs={city.faqs} />
 
@@ -63,6 +73,10 @@ export default function CityPageTemplate({ city, packages, breadcrumbItems, path
       <FeatureGrid {...city.whyBookWithUs} muted />
 
       <FeatureGrid {...city.travelTips} />
+
+      <FeatureGrid {...city.dressCode} muted />
+
+      <FeatureGrid {...city.requiredDocuments} />
 
       <FeatureGrid {...city.thingsToCarry} muted columns={3} />
 

@@ -212,6 +212,15 @@ export function RouteIcon({ className }) {
   );
 }
 
+export function MailIcon({ className }) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M4 5h16v14H4z" />
+      <path d="M4 6l8 7 8-7" />
+    </svg>
+  );
+}
+
 export function XMarkIcon({ className }) {
   return (
     <svg {...base} className={className}>
