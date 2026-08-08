@@ -145,7 +145,11 @@ const bottomFeatures = [
 export default function Hero() {
   return (
     <section className="bg-white">
-      <div className="relative aspect-[16/9.5] w-full overflow-hidden">
+      {/* Large screens: immersive overlay banner. Below lg the same
+          percentage-based layout would need text as small as 4-7px to
+          avoid the pieces overlapping, so mobile/tablet get a simpler
+          stacked layout instead (rendered further down). */}
+      <div className="relative hidden aspect-[16/9.5] w-full overflow-hidden lg:block">
         <Image
           src="/images/banner-bg.png"
           alt="Car on ghat road with South India temple backdrop"
@@ -278,6 +282,95 @@ export default function Hero() {
                   <span>Travel More</span>
                 </span>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile & tablet: stacked, legible banner. Reuses the same data
+          but in normal document flow with readable text sizes instead
+          of proportionally shrunk absolute overlays. */}
+      <div className="lg:hidden">
+        <div className="relative h-64 w-full overflow-hidden sm:h-80">
+          <Image
+            src="/images/banner-bg.png"
+            alt="Car on ghat road with South India temple backdrop"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent" />
+        </div>
+
+        <div className="container-page relative -mt-16 pb-6 sm:-mt-20">
+          <div className="rounded-2xl bg-white p-4 shadow-modal sm:p-6">
+            <h1 className="font-display text-2xl font-extrabold uppercase leading-tight text-primary-900 sm:text-3xl">
+              <span className="block">South India</span>
+              <span className="block text-secondary-500">Pilgrim Tour Packages</span>
+            </h1>
+
+            <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg bg-primary-900 px-3 py-2 text-xs font-bold uppercase tracking-wide text-white sm:text-sm">
+              {destinations.map((destination, index) => (
+                <span key={destination} className="flex items-center gap-1.5">
+                  {index > 0 && (
+                    <span className="text-secondary-400" aria-hidden="true">
+                      &bull;
+                    </span>
+                  )}
+                  {destination}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-4 grid grid-cols-5 gap-2">
+              {topFeatures.map((feature, index) => (
+                <div key={feature.label} className="flex flex-col items-center gap-1.5 text-center">
+                  <span
+                    className={`flex h-9 w-9 items-center justify-center rounded-full text-white shadow-soft sm:h-11 sm:w-11 ${
+                      index % 2 === 0 ? "bg-primary-800" : "bg-secondary-500"
+                    }`}
+                  >
+                    <feature.icon className="h-4 w-4 sm:h-5 sm:w-5" />
+                  </span>
+                  <span className="text-[10px] font-semibold leading-tight text-primary-900 sm:text-xs">
+                    {feature.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 grid grid-cols-2 gap-2 rounded-xl bg-primary-900 p-3 sm:grid-cols-4">
+              {bottomFeatures.map((feature) => (
+                <div key={feature.line1} className="flex items-center gap-2">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-secondary-500">
+                    <feature.icon className="h-4 w-4 text-white" />
+                  </span>
+                  <span className="flex flex-col text-[11px] font-bold uppercase leading-tight text-white">
+                    <span>{feature.line1}</span>
+                    <span className="font-medium text-white/75">{feature.line2}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 flex flex-col items-stretch gap-3 rounded-xl border border-primary-100 p-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="font-display text-sm font-extrabold uppercase text-primary-900">
+                  Start Your <span className="text-secondary-500">Spiritual Journey</span> Today!
+                </p>
+                <p className="mt-1 flex items-center gap-1.5 text-xs font-semibold text-primary-900">
+                  <UsersIcon className="h-4 w-4 shrink-0" />
+                  Worry Less, Travel More
+                </p>
+              </div>
+              <Link
+                href="#enquiry"
+                className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-secondary-500 px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition hover:bg-secondary-600 sm:w-auto"
+              >
+                Enquire Now
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
             </div>
           </div>
         </div>
