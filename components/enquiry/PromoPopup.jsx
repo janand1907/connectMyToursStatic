@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import { WhatsAppIcon, XMarkIcon, CheckCircleIcon, SparklesIcon, PhoneIcon } from "@/components/icons";
 
@@ -10,15 +11,19 @@ const POPUP_INITIAL_DELAY = 6000;
 const POPUP_REOPEN_INTERVAL = 60000;
 const EXIT_ANIMATION_MS = 200;
 
-const departureCities = ["Chennai", "Bangalore", "Hyderabad"];
+const packageCombos = [
+  "Tirupati + Srikalahasti + Kannipakkam",
+  "Shirdi + Vellore Golden Temple + Tiruvannamalai",
+  "Rameshwaram + Madurai Temple",
+];
 
-const coordinationPoints = [
-  "Transportation coordination for your journey",
-  "Accommodation coordination near Tirumala",
-  "Darshan queue assistance, subject to availability",
-  "VIP Break Darshan coordination",
-  "Dedicated coordinator on call",
-  "WhatsApp support throughout",
+const experienceHighlights = [
+  "Premium Hotels Booking",
+  "Private AC Vehicles",
+  "Pure Veg Meals",
+  "Airport Transfers",
+  "Quick Guidelines",
+  "Professional Team",
 ];
 
 export default function PromoPopup() {
@@ -87,43 +92,57 @@ export default function PromoPopup() {
           <XMarkIcon className="h-5 w-5" />
         </button>
 
-        <div className="p-5 pt-9 sm:p-6 sm:pt-9">
+        <div className="relative h-32 w-full sm:h-40">
+          <Image
+            src="/images/hero-temple.jpg"
+            alt="Sri Venkateswara Temple, Tirumala"
+            fill
+            sizes="(max-width: 640px) 384px, 448px"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent" />
+        </div>
+
+        <div className="p-5 pt-3 sm:p-6 sm:pt-4">
           <p className="text-center text-[11px] font-semibold uppercase tracking-wide text-primary-600">
-            {siteConfig.name} <span className="text-primary-200">•</span> Independent Pilgrimage Assistance
+            {siteConfig.name} <span className="text-primary-200">•</span>{" "}
+            <span className="text-secondary-500">5000+</span> Happy Customers
           </p>
 
           <h2
             id="promo-popup-heading"
             className="mt-2 text-center font-display text-xl font-bold leading-tight text-primary-900 sm:text-2xl"
           >
-            Get Free Tirupati Pilgrimage Assistance
+            Get Free Pilgrim Assistance
           </h2>
 
           <div className="mt-3 flex justify-center">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-600 px-3.5 py-1 text-[11px] font-semibold text-white">
               <SparklesIcon className="h-3.5 w-3.5" />
-              Multi-City Departures • Dedicated Coordinator Support
+              <span className="text-secondary-300">10 Yrs</span> Experience • 50+ Tours Booked Every Month
             </span>
           </div>
 
           <div className="mt-4 rounded-2xl bg-primary-50 p-4">
             <p className="text-[11px] font-bold uppercase tracking-wide text-primary-700">
-              Plan Your Tirupati Pilgrimage From
+              Get Your Package Today and Enjoy a <span className="text-secondary-500">Stress-Free</span> Journey
             </p>
             <ul className="mt-2 space-y-1.5">
-              {departureCities.map((city) => (
-                <li key={city} className="flex items-start gap-1.5 text-sm text-neutral-700">
+              {packageCombos.map((combo) => (
+                <li key={combo} className="flex items-start gap-1.5 text-sm text-neutral-700">
                   <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" />
-                  <span>Tirupati travel packages from {city}</span>
+                  <span>{combo}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="mt-3 rounded-2xl bg-neutral-50 p-4">
-            <p className="text-[11px] font-bold uppercase tracking-wide text-neutral-500">What We Help Coordinate</p>
+            <p className="text-[11px] font-bold uppercase tracking-wide text-neutral-500">
+              Proceed With a Seamless Travel Experience
+            </p>
             <ul className="mt-2 space-y-1.5">
-              {coordinationPoints.map((point) => (
+              {experienceHighlights.map((point) => (
                 <li key={point} className="flex items-start gap-1.5 text-sm text-neutral-700">
                   <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" />
                   <span>{point}</span>
@@ -133,7 +152,7 @@ export default function PromoPopup() {
           </div>
 
           <p className="mt-3 text-center text-xs italic text-neutral-500">
-            Clarity, coordination, and peace of mind — every step of your pilgrimage.
+            Luxury, comfort, and unforgettable memories in every trip.
           </p>
 
           <div className="mt-4 flex flex-col gap-2.5">

@@ -245,3 +245,11 @@ export function ChevronDownIcon({ className }) {
     </svg>
   );
 }
+
+export function StarIcon({ className }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M12 2.5l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17.6l-6.1 3.4 1.5-6.8-5.2-4.7 6.9-.7z" />
+    </svg>
+  );
+}

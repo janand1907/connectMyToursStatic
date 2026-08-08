@@ -5,46 +5,48 @@
 
 export const homePackages = [
   {
-    slug: "srivani-vip-chennai",
-    title: "Srivani VIP Break Darshan — from Chennai",
-    image: "/images/temple-entrance.jpg",
-    price: "On Request",
-    duration: "2 Days / 1 Night",
-    highlights: [
-      "Round-trip transportation coordination from Chennai",
-      "Break darshan queue assistance, subject to availability",
-      "Comfortable stay coordination near Tirumala",
-      "Dedicated travel coordinator on call",
-    ],
-    bookUrl: "/chennai/srivani-vip-break-darshan",
+    slug: "chennai-by-car",
+    iconName: "CarIcon",
+    title: "Chennai to Tirupati Package (By Car)",
+    description:
+      "Comfortable Chennai to Tirupati travel package with private AC car transport, pickup, hotel stay options and return drop support for a smooth pilgrimage trip.",
+    includesText: "Includes private car, route planning and optional hotel stay",
+    bestForText: "Best for families and devotees travelling from Chennai",
+    buttonLabel: "View Chennai Package",
+    bookUrl: "/chennai",
+    secondaryLink: { label: "View NRI Chennai Package", href: "/chennai/nri-darshan-package" },
   },
   {
-    slug: "nri-darshan-hyderabad",
-    title: "NRI Darshan Package — from Hyderabad",
-    image: "/images/maha-dwaram.jpg",
-    price: "On Request",
-    duration: "2 Days / 1 Night",
-    highlights: [
-      "Tailored for overseas and NRI pilgrims",
-      "Airport pickup and drop coordination",
-      "Darshan queue assistance, subject to availability",
-      "English-speaking coordinator support",
-    ],
+    slug: "hyderabad-package",
+    iconName: "PlaneIcon",
+    title: "Hyderabad to Tirupati Package",
+    description:
+      "Tirupati package from Hyderabad with convenient travel planning, pickup support, hotel stay options and smooth trip coordination.",
+    includesText: "Includes travel planning, transfers and optional stay support",
+    bestForText: "Ideal for devotees travelling from Hyderabad",
+    buttonLabel: "View Hyderabad Package",
+    bookUrl: "/hyderabad",
+    secondaryLink: { label: "View NRI Hyderabad Package", href: "/hyderabad/nri-darshan-package" },
+  },
+  {
+    slug: "nri-chennai",
+    iconName: "CompassIcon",
+    title: "NRI Tirupati Package from Chennai",
+    description:
+      "Specially designed Tirupati travel package for NRI and overseas devotees arriving in Chennai with airport pickup, private car travel and trip coordination.",
+    includesText: "Includes airport pickup, private vehicle and travel support",
+    buttonLabel: "View NRI Chennai Package",
+    bookUrl: "/chennai/nri-darshan-package",
+  },
+  {
+    slug: "nri-hyderabad",
+    iconName: "HeadsetIcon",
+    title: "NRI Tirupati Package from Hyderabad",
+    description:
+      "Tirupati package for NRI devotees travelling through Hyderabad with airport transfers, travel planning and comfortable trip support.",
+    includesText: "Includes pickup, itinerary planning and travel coordination",
+    buttonLabel: "View NRI Hyderabad Package",
     bookUrl: "/hyderabad/nri-darshan-package",
-  },
-  {
-    slug: "tirupati-local",
-    title: "Tirupati Local Darshan Assistance",
-    image: "/images/ghat-road.jpg",
-    price: "On Request",
-    duration: "1 Day",
-    highlights: [
-      "Local transportation between Tirupati and Tirumala",
-      "Darshan queue assistance, subject to availability",
-      "Accommodation coordination on request",
-      "On-ground support throughout your visit",
-    ],
-    bookUrl: "/tirupati",
   },
 ];
 

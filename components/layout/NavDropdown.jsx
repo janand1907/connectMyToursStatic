@@ -17,9 +17,16 @@ export default function NavDropdown({ item }) {
   }
 
   return (
-    <div className="relative" onMouseEnter={openMenu} onMouseLeave={scheduleClose}>
+    <div
+      className="relative"
+      onMouseEnter={openMenu}
+      onMouseLeave={scheduleClose}
+    >
       <div className="flex items-center gap-1">
-        <Link href={item.href} className="py-2 font-medium text-neutral-700 hover:text-primary-600">
+        <Link
+          href={item.href}
+          className="py-2 font-medium text-secondary-500 hover:text-primary-600"
+        >
           {item.label}
         </Link>
         <button
@@ -28,7 +35,7 @@ export default function NavDropdown({ item }) {
           aria-haspopup="true"
           aria-label={`Toggle ${item.label} submenu`}
           onClick={() => setOpen((o) => !o)}
-          className="rounded p-1 text-neutral-500 hover:text-primary-600"
+          className="rounded p-1 text-secondary-500 hover:text-primary-600"
         >
           <svg
             width="12"
@@ -37,7 +44,12 @@ export default function NavDropdown({ item }) {
             className={`transition-transform ${open ? "rotate-180" : ""}`}
             aria-hidden="true"
           >
-            <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            <path
+              d="M2 4l4 4 4-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
           </svg>
         </button>
       </div>

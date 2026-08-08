@@ -153,7 +153,7 @@ export default function HeroEnquiryForm({ sourceLabel = "home_hero" }) {
 
       <div>
         <label htmlFor="hero-email" className="mb-1 block text-sm font-medium text-neutral-700">
-          Email Address
+          Email ID (Optional)
         </label>
         <input
           id="hero-email"
@@ -175,7 +175,7 @@ export default function HeroEnquiryForm({ sourceLabel = "home_hero" }) {
 
       <div>
         <label htmlFor="hero-message" className="mb-1 block text-sm font-medium text-neutral-700">
-          Message
+          Travel Requirement (Optional)
         </label>
         <textarea
           id="hero-message"
@@ -195,7 +195,7 @@ export default function HeroEnquiryForm({ sourceLabel = "home_hero" }) {
           disabled={status === "submitting"}
           className="inline-flex w-full items-center justify-center rounded-xl bg-primary-800 px-6 py-3 font-semibold text-white shadow-soft transition duration-200 hover:bg-primary-900 hover:shadow-modal disabled:opacity-60"
         >
-          {status === "submitting" ? "Sending..." : "Submit Enquiry"}
+          {status === "submitting" ? "Sending..." : "Get Package Details"}
         </button>
         <button type="button" onClick={handleWhatsAppClick} className="btn-whatsapp w-full">
           WhatsApp Enquiry

@@ -11,9 +11,16 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-neutral-100 bg-white/95 backdrop-blur">
-      <nav className="container-page flex h-16 items-center justify-between" aria-label="Main navigation">
-        <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
+    <header className="fixed w-full top-0 z-30 bg-gradient-to-b from-white/95 via-white/80 to-transparent pb-6">
+      <nav
+        className="container-page flex h-16 items-center justify-between"
+        aria-label="Main navigation"
+      >
+        <Link
+          href="/"
+          className="flex items-center gap-2"
+          onClick={() => setMobileOpen(false)}
+        >
           <Image
             src="/logo.svg"
             alt="Connect My Tours logo"
@@ -32,7 +39,10 @@ export default function Navbar() {
               </li>
             ) : (
               <li key={item.href}>
-                <Link href={item.href} className="py-2 font-medium text-neutral-700 hover:text-primary-600">
+                <Link
+                  href={item.href}
+                  className="py-2 font-medium text-secondary-500 hover:text-primary-600"
+                >
                   {item.label}
                 </Link>
               </li>
@@ -41,7 +51,7 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:block">
-          <Link href="/contact-us" className="btn-primary">
+          <Link href="/contact-us" className="btn-secondary">
             Plan My Trip
           </Link>
         </div>
@@ -58,7 +68,12 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {mobileOpen && <MobileMenu navLinks={navLinks} onNavigate={() => setMobileOpen(false)} />}
+      {mobileOpen && (
+        <MobileMenu
+          navLinks={navLinks}
+          onNavigate={() => setMobileOpen(false)}
+        />
+      )}
     </header>
   );
 }
