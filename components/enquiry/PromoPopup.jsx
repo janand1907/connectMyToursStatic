@@ -3,7 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
-import { WhatsAppIcon, XMarkIcon, CheckCircleIcon, SparklesIcon, PhoneIcon } from "@/components/icons";
+import {
+  WhatsAppIcon,
+  XMarkIcon,
+  CheckCircleIcon,
+  SparklesIcon,
+  PhoneIcon,
+} from "@/components/icons";
 
 // Timer-based reopen behaviour — no sessionStorage/localStorage/cookies, so the
 // popup keeps resurfacing for the whole visit rather than being dismissed forever.
@@ -117,20 +123,25 @@ export default function PromoPopup() {
           </h2>
 
           <div className="mt-3 flex justify-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-600 px-3.5 py-1 text-[11px] font-semibold text-white">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary-500 px-3.5 py-1 text-[11px] font-semibold text-white">
               <SparklesIcon className="h-3.5 w-3.5" />
-              <span className="text-secondary-300">10 Yrs</span> Experience • 50+ Tours Booked Every Month
+              <span className="text-black">10 Yrs</span> Experience • 50+ Tours
+              Booked Every Month
             </span>
           </div>
 
           <div className="mt-4 rounded-2xl bg-primary-50 p-4">
             <p className="text-[11px] font-bold uppercase tracking-wide text-primary-700">
-              Get Your Package Today and Enjoy a <span className="text-secondary-500">Stress-Free</span> Journey
+              Get Your Package Today and Enjoy a{" "}
+              <span className="text-secondary-500">Stress-Free</span> Journey
             </p>
             <ul className="mt-2 space-y-1.5">
               {packageCombos.map((combo) => (
-                <li key={combo} className="flex items-start gap-1.5 text-sm text-neutral-700">
-                  <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" />
+                <li
+                  key={combo}
+                  className="flex items-start gap-1.5 text-sm text-neutral-700"
+                >
+                  <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-secondary-500" />
                   <span>{combo}</span>
                 </li>
               ))}
@@ -143,8 +154,11 @@ export default function PromoPopup() {
             </p>
             <ul className="mt-2 space-y-1.5">
               {experienceHighlights.map((point) => (
-                <li key={point} className="flex items-start gap-1.5 text-sm text-neutral-700">
-                  <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" />
+                <li
+                  key={point}
+                  className="flex items-start gap-1.5 text-sm text-neutral-700"
+                >
+                  <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-green-500" />
                   <span>{point}</span>
                 </li>
               ))}
@@ -156,12 +170,18 @@ export default function PromoPopup() {
           </p>
 
           <div className="mt-4 flex flex-col gap-2.5">
-            <a href={`tel:${siteConfig.phone}`} onClick={close} className="btn-primary w-full">
+            <a
+              href={`tel:${siteConfig.phone}`}
+              onClick={close}
+              className="btn-secondary w-full"
+            >
               <PhoneIcon className="h-5 w-5" />
               Speak to a Consultant
             </a>
             <a
-              href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(siteConfig.whatsappDefaultMessage)}`}
+              href={`https://wa.me/${
+                siteConfig.whatsapp
+              }?text=${encodeURIComponent(siteConfig.whatsappDefaultMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={close}

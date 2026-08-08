@@ -6,11 +6,19 @@ const defaultSteps = [
   { title: "Start Journey", description: "Begin your pilgrimage with transportation and support arranged in advance." },
 ];
 
-export default function HowItWorks({ heading = "How It Works", steps = defaultSteps }) {
+const colsByCount = {
+  3: "lg:grid-cols-3",
+  4: "lg:grid-cols-4",
+  5: "lg:grid-cols-5",
+};
+
+export default function HowItWorks({ heading = "How It Works", description, steps = defaultSteps }) {
+  const colsClass = colsByCount[steps.length] || "lg:grid-cols-5";
   return (
     <section className="container-page py-14">
       <h2 className="section-heading text-center">{heading}</h2>
-      <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+      {description && <p className="mx-auto mt-3 max-w-2xl text-center text-neutral-600">{description}</p>}
+      <ol className={`mt-10 grid gap-6 sm:grid-cols-2 ${colsClass}`}>
         {steps.map((step, index) => (
           <li key={step.title} className="card p-6">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-500 font-semibold text-white">
