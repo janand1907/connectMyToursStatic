@@ -45,6 +45,31 @@ export const seoConfig = {
     description:
       "On-ground pilgrimage travel support within Tirupati — local transportation coordination, accommodation coordination, and darshan queue assistance.",
   },
+  "/kerala": {
+    title: "Kerala Tour Packages | Munnar, Thekkady, Alleppey & Kochi | Connect My Tours",
+    description:
+      "Kerala tour travel assistance covering Munnar hill stations, Thekkady wildlife, Alleppey backwater houseboats and Fort Kochi heritage sightseeing, with an optional temple darshan circuit.",
+  },
+  "/kerala/gods-own-country": {
+    title: "Kerala – God's Own Country Tour (5D/4N) | Munnar, Thekkady, Alleppey, Kochi | Connect My Tours",
+    description:
+      "5 Day / 4 Night Kerala itinerary covering Munnar hill stations, Thekkady wildlife sanctuary, an Alleppey backwater houseboat cruise and Fort Kochi heritage sightseeing.",
+  },
+  "/kerala/temple-nature-trail": {
+    title: "Kerala Temple & Nature Trail (7D/6N) | Guruvayur, Munnar, Thekkady, Alleppey | Connect My Tours",
+    description:
+      "7 Day / 6 Night Kerala itinerary combining Guruvayur temple darshan coordination with Munnar hill stations, Thekkady wildlife, an Alleppey houseboat cruise and Fort Kochi heritage sightseeing.",
+  },
+  "/itinerary-planner": {
+    title: "Itinerary Planner | Build Your Own India Trip | Connect My Tours",
+    description:
+      "Plan a custom India trip — add any city as a stop, set nights at each, and get an instant day-by-day itinerary and route map to share with a travel coordinator.",
+  },
+  "/south-india": {
+    title: "South India Tour Packages | Kerala & Tirupati | Connect My Tours",
+    description:
+      "Independent travel assistance across South India — Kerala tour packages and Tirupati pilgrimage packages from Chennai, Bangalore, and Hyderabad.",
+  },
   "/about-us": {
     title: "About Connect My Tours | Independent Pilgrimage Travel Assistance",
     description:

@@ -1,5 +1,6 @@
 export const navLinks = [
   { label: "Home", href: "/" },
+  { label: "Plan Your Itinerary", href: "/itinerary-planner" },
   {
     label: "Chennai",
     href: "/chennai",
@@ -8,7 +9,8 @@ export const navLinks = [
       { label: "NRI Darshan Package", href: "/chennai/nri-darshan-package" },
     ],
   },
-  { label: "Bangalore", href: "/bangalore" },
+  // Temporarily hidden from the main menu — re-enable when ready.
+  // { label: "Bangalore", href: "/bangalore" },
   {
     label: "Hyderabad",
     href: "/hyderabad",
@@ -17,7 +19,10 @@ export const navLinks = [
       { label: "NRI Darshan Package", href: "/hyderabad/nri-darshan-package" },
     ],
   },
-  { label: "Tirupati", href: "/tirupati" },
+  // Temporarily hidden from the main menu — re-enable when ready.
+  // { label: "Tirupati", href: "/tirupati" },
+  { label: "Kerala", href: "/kerala" },
+  { label: "South India", href: "/south-india" },
 ];
 
 export const footerQuickLinks = [
@@ -26,6 +31,8 @@ export const footerQuickLinks = [
   { label: "Bangalore", href: "/bangalore" },
   { label: "Hyderabad", href: "/hyderabad" },
   { label: "Tirupati", href: "/tirupati" },
+  { label: "Kerala", href: "/kerala" },
+  { label: "South India", href: "/south-india" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact Us", href: "/contact-us" },
   { label: "Privacy Policy", href: "/privacy-policy" },

@@ -92,6 +92,12 @@ export default function Footer() {
           </div>
         </div>
         <p className="container-page pb-6 text-[11px] leading-relaxed text-white/50">{footerDisclaimer}</p>
+        <p className="container-page pb-6 text-[11px] leading-relaxed text-white/40">
+          Kerala tour photos via Wikimedia Commons: Munnar tea plantations (Yusuf, public domain) · Periyar
+          Lake boat cruise, Thekkady (Jonathanawhite, public domain) · Houseboat, Punnamada backwaters,
+          Alleppey (Varghesepunnamada, CC BY 4.0) · Chinese fishing nets, Fort Kochi (Vis M, CC BY-SA 4.0) ·
+          Guruvayur Sri Krishna Temple (Aruna, CC BY-SA).
+        </p>
       </div>
     </footer>
   );

@@ -4,6 +4,15 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/kerala/itinerary-planner",
+        destination: "/itinerary-planner",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
