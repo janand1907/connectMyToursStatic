@@ -21,8 +21,8 @@ function getClientIp(request) {
   return request.headers.get("x-forwarded-for")?.split(",")[0].trim() || request.headers.get("x-real-ip") || "unknown";
 }
 
-function isValidIndianMobile(phone) {
-  return /^[6-9]\d{9}$/.test(phone.replace(/[\s+-]/g, "").replace(/^91/, ""));
+function isValidPhone(phone) {
+  return /^\d{7,15}$/.test(String(phone).replace(/[\s()-]/g, "").replace(/^\+/, ""));
 }
 
 function isValidEmail(email) {
@@ -32,7 +32,7 @@ function isValidEmail(email) {
 function validate(body) {
   const errors = [];
   if (!body.name || !String(body.name).trim()) errors.push("name is required");
-  if (!body.phone || !isValidIndianMobile(String(body.phone))) errors.push("a valid Indian mobile number is required");
+  if (!body.phone || !isValidPhone(body.phone)) errors.push("a valid phone number is required");
   if (body.email && !isValidEmail(String(body.email))) errors.push("email is invalid");
   return errors;
 }

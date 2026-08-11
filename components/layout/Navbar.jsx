@@ -2,16 +2,30 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navLinks } from "@/data/nav";
 import NavDropdown from "./NavDropdown";
 import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 10);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed w-full top-0 z-30 bg-gradient-to-b from-white/95 via-white/80 to-transparent pb-6">
+    <header
+      className={`fixed w-full top-0 z-30 transition-colors duration-200 ${
+        scrolled ? "bg-white shadow-soft" : "bg-gradient-to-b from-white/95 via-white/80 to-transparent pb-6"
+      }`}
+    >
       <nav
         className="container-page flex h-16 items-center justify-between"
         aria-label="Main navigation"

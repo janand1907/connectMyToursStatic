@@ -7,9 +7,9 @@ function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function isValidIndianMobile(phone) {
-  const digitsOnly = phone.trim().replace(/[\s+-]/g, "").replace(/^91(?=\d{10}$)/, "");
-  return /^[6-9]\d{9}$/.test(digitsOnly);
+function isValidPhone(phone) {
+  const digitsOnly = phone.trim().replace(/[\s()-]/g, "").replace(/^\+/, "");
+  return /^\d{7,15}$/.test(digitsOnly);
 }
 
 function getInitialValues() {
@@ -39,8 +39,8 @@ export default function BalajiDarshanEnquiryForm({ sourceLabel }) {
 
     if (!values.phone.trim()) {
       nextErrors.phone = "Please enter your WhatsApp number.";
-    } else if (!isValidIndianMobile(values.phone)) {
-      nextErrors.phone = "Please enter a valid 10-digit Indian mobile number.";
+    } else if (!isValidPhone(values.phone)) {
+      nextErrors.phone = "Please enter a valid phone number with country code.";
     }
 
     if (Number(values.captchaAnswer) !== captcha.a + captcha.b) {
@@ -122,27 +122,18 @@ export default function BalajiDarshanEnquiryForm({ sourceLabel }) {
         <label htmlFor="balaji-phone" className="sr-only">
           WhatsApp Number
         </label>
-        <div
-          className={`flex overflow-hidden rounded-xl border border-neutral-200 focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-100 ${
-            errors.phone ? errorInputClass : ""
-          }`}
-        >
-          <span className="flex items-center gap-1.5 border-r border-neutral-200 bg-neutral-50 px-3 text-sm font-medium text-neutral-600">
-            <span aria-hidden="true">🇮🇳</span> +91
-          </span>
-          <input
-            id="balaji-phone"
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            placeholder="WhatsApp Number"
-            value={values.phone}
-            onChange={handleChange}
-            className="w-full px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none"
-            aria-invalid={Boolean(errors.phone)}
-            aria-describedby={errors.phone ? "balaji-phone-error" : undefined}
-          />
-        </div>
+        <input
+          id="balaji-phone"
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+          placeholder="WhatsApp Number (with country code)"
+          value={values.phone}
+          onChange={handleChange}
+          className={`${inputClass} ${errors.phone ? errorInputClass : ""}`}
+          aria-invalid={Boolean(errors.phone)}
+          aria-describedby={errors.phone ? "balaji-phone-error" : undefined}
+        />
         {errors.phone && (
           <p id="balaji-phone-error" className="mt-1 text-xs text-red-600">
             {errors.phone}

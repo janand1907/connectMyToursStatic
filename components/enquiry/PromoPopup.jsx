@@ -98,9 +98,9 @@ export default function PromoPopup() {
           <XMarkIcon className="h-5 w-5" />
         </button>
 
-        <div className="relative h-32 w-full sm:h-40">
+        <div className="relative h-40 w-full sm:h-48">
           <Image
-            src="/images/hero-temple.jpg"
+            src="/images/hero-temple-1.jpg"
             alt="Sri Venkateswara Temple, Tirumala"
             fill
             sizes="(max-width: 640px) 384px, 448px"
