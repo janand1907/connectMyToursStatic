@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import { siteConfig } from "@/config/site";
 import {
   MapPinIcon,
   CarIcon,
@@ -264,13 +264,15 @@ export default function Hero() {
               <span className="h-px w-4 bg-primary-900/25 sm:w-10" />
             </div>
             <div className="flex items-center justify-center gap-1.5 sm:gap-3">
-              <Link
-                href="#enquiry"
+              <a
+                href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(siteConfig.whatsappDefaultMessage)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 rounded-full bg-secondary-500 px-2.5 py-1 text-[5px] font-semibold text-white shadow-soft transition hover:bg-secondary-600 sm:gap-2 sm:px-6 sm:py-2.5 sm:text-xs"
               >
                 Enquire Now
                 <span aria-hidden="true">&rarr;</span>
-              </Link>
+              </a>
               <span
                 className="h-5 w-px shrink-0 bg-primary-900/20 sm:h-8"
                 aria-hidden="true"
@@ -364,13 +366,15 @@ export default function Hero() {
                   Worry Less, Travel More
                 </p>
               </div>
-              <Link
-                href="#enquiry"
+              <a
+                href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(siteConfig.whatsappDefaultMessage)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-secondary-500 px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition hover:bg-secondary-600 sm:w-auto"
               >
                 Enquire Now
                 <span aria-hidden="true">&rarr;</span>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
