@@ -3,7 +3,11 @@ import { WhatsAppIcon, PhoneIcon, RouteIcon } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 import BalajiDarshanEnquiryForm from "./BalajiDarshanEnquiryForm";
 
-const trustPoints = ["Trusted by travellers", "Genuine Guidance", "Trip support till return drop"];
+const trustPoints = [
+  "Trusted by travellers",
+  "Genuine Guidance",
+  "Trip support till return drop",
+];
 
 export default function PackageHeroBanner({
   title,
@@ -11,15 +15,27 @@ export default function PackageHeroBanner({
   pickupLabel,
   whatsappMessage,
   sourceLabel,
-  image = "/images/hero-temple.jpg",
+  image = "/images/hero-temple-1.jpg",
   imageAlt = "Sri Venkateswara Temple, Tirumala",
 }) {
-  const pillBadges = [pickupLabel, "Stay Assistance", "Document Guidance", "Trip Coordination"];
+  const pillBadges = [
+    pickupLabel,
+    "Stay Assistance",
+    "Document Guidance",
+    "Trip Coordination",
+  ];
 
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
-        <Image src={image} alt={imageAlt} fill priority sizes="100vw" className="object-cover" />
+        <Image
+          src={image}
+          alt={imageAlt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
       </div>
 
@@ -50,7 +66,8 @@ export default function PackageHeroBanner({
           </div>
 
           <p className="mt-3 max-w-md text-sm font-semibold text-secondary-300">
-            Independent private travel assistance for Tirupati pilgrimage planning.
+            Independent private travel assistance for Tirupati pilgrimage
+            planning.
           </p>
 
           <div className="mt-5 flex flex-wrap gap-2.5">
@@ -69,7 +86,9 @@ export default function PackageHeroBanner({
 
           <div className="mt-5 flex flex-wrap gap-3">
             <a
-              href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`}
+              href={`https://wa.me/${
+                siteConfig.whatsapp
+              }?text=${encodeURIComponent(whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-secondary-500 px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-secondary-600"
