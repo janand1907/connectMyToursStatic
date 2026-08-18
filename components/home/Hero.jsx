@@ -215,7 +215,7 @@ export default function Hero() {
                   <feature.icon className="h-[40%] w-[40%]" />
                 </span>
                 <span className="text-[5px] font-bold uppercase leading-tight text-white sm:text-[9px] lg:text-xs">
-                  {feature.label}
+                  {feature.label}.
                 </span>
               </div>
             ))}
