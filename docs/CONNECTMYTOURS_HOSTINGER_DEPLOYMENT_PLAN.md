@@ -29,6 +29,11 @@ fix removes unnecessary Next-only `server-only` guards from the migration
 dependency chain; `mysql2` and `server-only` remain runtime dependencies. No
 migration or destructive retry was performed.
 
+The local isolated blog harness is separately blocked by Homebrew MySQL 8.4.11
+crashing with SIGSEGV during isolated datadir initialization on Apple
+Silicon/macOS 26.6.2. The harness now detects common Homebrew paths and fails
+with a clear compatible-binary requirement without using `.env.local`.
+
 Execution record, 2026-10-07:
 
 - A dedicated Connect My Tours blog database and database user were created in

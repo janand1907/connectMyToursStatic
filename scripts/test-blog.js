@@ -23,8 +23,28 @@ function run(command, args, { env = isolatedEnvironment(), visible = false } = {
     let stderr = "";
     if (!visible) child.stderr.on("data", (data) => { stderr += data; });
     child.once("error", reject);
-    child.once("exit", (code) => code === 0 ? resolve() : reject(new Error(`Local test process failed.${stderr ? ` ${stderr.trim()}` : ""}`)));
+    child.once("exit", (code, signal) => code === 0 ? resolve() : reject(new Error(`Local test process failed (${command}${signal ? `, ${signal}` : ""}).${stderr ? ` ${stderr.trim()}` : ""}`)));
   });
+}
+
+async function resolveMysqld() {
+  const candidates = [
+    process.env.TEST_MYSQLD_PATH,
+    process.arch === "arm64" ? "/opt/homebrew/opt/mysql@8.4/bin/mysqld" : null,
+    "/usr/local/opt/mysql@8.4/bin/mysqld",
+    "mysqld",
+  ].filter(Boolean);
+  for (const candidate of candidates) {
+    if (candidate === "mysqld") return candidate;
+    try { await fs.access(candidate); return candidate; } catch { /* Try the next known installation. */ }
+  }
+  throw new Error("No usable isolated MySQL binary was found. Set TEST_MYSQLD_PATH to a compatible local mysqld binary.");
+}
+
+async function mysqlLog(directory) {
+  const log = await fs.readFile(path.join(directory, "mysql.log"), "utf8").catch(() => "");
+  const matches = log.split("\n").filter((line) => /\[ERROR\]|signal \d+|SIG[A-Z]+|crash/i.test(line));
+  return matches.slice(0, 3).join(" ");
 }
 
 async function freePort() {
@@ -42,7 +62,7 @@ async function main() {
   const directory = await fs.realpath(await fs.mkdtemp("/tmp/cmt-blog-test-"));
   const datadir = path.join(directory, "data");
   const socketPath = path.join(directory, "mysql.sock");
-  const mysqld = process.env.TEST_MYSQLD_PATH || "mysqld";
+  const mysqld = await resolveMysqld();
   let server;
   let root;
   let serverFailure;
@@ -51,7 +71,12 @@ async function main() {
   let webServerExited;
   try {
     await fs.mkdir(datadir, { mode: 0o700 });
-    await run(mysqld, ["--no-defaults", "--initialize-insecure", `--datadir=${datadir}`, `--log-error=${directory}/mysql.log`]);
+    try {
+      await run(mysqld, ["--no-defaults", "--initialize-insecure", `--datadir=${datadir}`, `--log-error=${directory}/mysql.log`]);
+    } catch (error) {
+      const detail = await mysqlLog(directory);
+      throw new Error(`Temporary MySQL initialization failed. ${detail || error.message}`);
+    }
     const port = await freePort();
     server = spawn(mysqld, ["--no-defaults", `--datadir=${datadir}`, `--socket=${socketPath}`, `--port=${port}`,
       "--bind-address=127.0.0.1", "--mysqlx=0", "--skip-log-bin", `--pid-file=${directory}/mysql.pid`,
@@ -102,11 +127,7 @@ async function main() {
       await webServerExited;
       clearTimeout(timeout);
     }
-    if (!server) {
-      const log = await fs.readFile(path.join(directory, "mysql.log"), "utf8").catch(() => "");
-      const errors = log.split("\n").filter((line) => line.includes("[ERROR]")).slice(-4);
-      if (errors.length) console.error(errors.join("\n"));
-    }
+    if (!server) { const detail = await mysqlLog(directory); if (detail) console.error(detail); }
     if (root) {
       try { await root.query("SHUTDOWN"); } catch { /* SHUTDOWN can close the socket before responding. */ }
       await root.end().catch(() => {});

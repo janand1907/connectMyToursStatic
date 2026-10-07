@@ -20,6 +20,11 @@ because the source-side CLI could not resolve `server-only` and `mysql2`; no
 migration has been run. The local fix removes unnecessary Next-only guards from
 the CLI chain and retains both packages in runtime dependencies.
 
+The full local blog harness is currently blocked by a Homebrew MySQL 8.4.11
+SIGSEGV during isolated datadir initialization on Apple Silicon/macOS 26.6.2.
+The harness reports this explicitly and does not fall back to an existing
+database. A compatible local `mysqld` is required before this gate is complete.
+
 Database/user creation, backup completion, and private runtime-variable
 application are complete. Applying the variables redeployed master commit
 `40cfa127`; the corrected blog release is now current. No production schema

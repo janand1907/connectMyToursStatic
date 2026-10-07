@@ -33,6 +33,11 @@ environment with the complete application dependencies. The local runner fix
 also removes unnecessary `server-only` imports from the migration CLI's
 dependency chain while preserving those guards for request-facing modules.
 
+The local full-suite gate is currently environment-blocked: Homebrew MySQL
+8.4.11 crashes during isolated initialization on Apple Silicon/macOS 26.6.2.
+Use a compatible local `mysqld` through `TEST_MYSQLD_PATH`; do not point the
+harness at the existing local or production database.
+
 ## Before requesting execution approval
 
 - The reviewed release candidate is identified by a local Git commit but has not

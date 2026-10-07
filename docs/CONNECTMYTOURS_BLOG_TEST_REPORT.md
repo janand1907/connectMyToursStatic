@@ -37,6 +37,15 @@ access was disabled and the current temporary key was removed. The local fix
 removes unnecessary `server-only` imports from the migration CLI chain; both
 `mysql2` and `server-only` are already declared in runtime dependencies.
 
+The local isolated MySQL harness was then reproduced independently. Homebrew
+MySQL 8.4.11 on Apple Silicon/macOS 26.6.2 crashes with SIGSEGV during
+`--initialize-insecure`, before a socket, port, or database is created. The
+harness now discovers common Apple Silicon/Homebrew paths and reports the
+initialization failure and safe remediation (`TEST_MYSQLD_PATH` pointing to a
+compatible local binary) without falling back to `.env.local` or any existing
+database. This is an environment-only blocker; integration coverage is not
+silently skipped.
+
 - Local/test execution remains limited to `127.0.0.1`, `localhost`, or `::1`
   and approved `connect_my_tours_blog_local` or
   `connect_my_tours_blog_test*` database names.
