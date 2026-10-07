@@ -185,6 +185,11 @@ tables, admin, or sample content were created. Temporary SSH access and its
 key were removed. The next action is a focused dependency/runtime fix followed
 by a new approval window.
 
+The standalone runner was deployed as `9d2dbc9` and reached the production
+database, but authentication was denied for the configured blog user. No schema
+change, admin creation, or sample content followed. Temporary SSH was revoked
+and the local key was destroyed.
+
 ## Standalone runner verification
 
 `dist/blog-migrate.cjs` bundles the migration code, `mysql2`, configuration
@@ -192,3 +197,7 @@ validation, and all migration SQL. It resolves without source-side modules and
 fails safely on an invalid production origin before any database connection.
 The full isolated MariaDB blog, admin, and public suites pass after this
 change. Production migration and administrator creation remain pending.
+
+## Production retry status
+
+On 2026-10-07 the current deployed revision passed the Hostinger build and existing-page smoke checks. After a private database credential refresh, the standalone production runner still received a MySQL authentication denial before connecting. Production tables and admin data remain absent; temporary SSH access was revoked and no secrets were recorded here.

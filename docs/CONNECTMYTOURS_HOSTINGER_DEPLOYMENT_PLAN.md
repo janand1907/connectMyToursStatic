@@ -207,6 +207,11 @@ administrator provisioning followed. Temporary SSH access and its key were
 removed. A focused runner/dependency fix is required before another release
 window.
 
+The standalone runner was subsequently deployed in `9d2dbc9` and executed with
+Hostinger's Node 22 binary. It reached the production database, which rejected
+the configured database user credentials. The migration stopped before creating
+tables; temporary SSH access was revoked and its key was deleted.
+
 ## Standalone migration runner
 
 The source-side Hostinger SSH path does not expose a complete dependency tree,
@@ -215,3 +220,7 @@ locally with `npm run blog:build-runner`, deploy that reviewed artifact, and run
 `node dist/blog-migrate.cjs migrate` from the deployed app. The bundle reads
 only `process.env`, validates before connecting, embeds migration SQL, and does
 not contain credentials. A new controlled release is still required.
+
+## 2026-10-07 credential retry
+
+The deployed 9d2dbc9 revision completed successfully after a private Hostinger database-password/environment refresh. Existing public pages remained healthy. The standalone runner was retried with the corrected runtime environment, but Hostinger MySQL still rejected authentication before any schema statement ran. No production tables, admin account, or uploads were created. Temporary SSH access was removed after the retry.

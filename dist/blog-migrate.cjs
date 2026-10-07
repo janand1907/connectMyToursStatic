@@ -20856,8 +20856,9 @@ var require_config = __commonJS({
     var { BlogError } = require_errors2();
     var APPROVED_LOCAL_HOSTS = /* @__PURE__ */ new Set(["127.0.0.1", "localhost", "::1"]);
     var LOCAL_DATABASE_PATTERN = /^connect_my_tours_blog_(?:local|test(?:_[a-z0-9]{1,12})?)$/;
-    var DATABASE_IDENTIFIER_PATTERN = /^[A-Za-z0-9$_]+$/;
     var PRODUCTION_ORIGIN = "https://www.connectmytours.com";
+    var HOSTINGER_PRODUCTION_DATABASE = "u284223597_cmt_blog";
+    var HOSTINGER_PRODUCTION_USER = "u284223597_cmt_blog";
     function configError(message) {
       throw new BlogError(message, "CONFIGURATION", 503);
     }
@@ -20879,6 +20880,8 @@ var require_config = __commonJS({
       const environment = runtimeEnvironment(env);
       const host = typeof env.MYSQL_HOST === "string" ? env.MYSQL_HOST.trim() : "";
       const database = typeof env.MYSQL_DATABASE === "string" ? env.MYSQL_DATABASE.trim() : "";
+      const port = Number(env.MYSQL_PORT || 3306);
+      if (!Number.isInteger(port) || port < 1 || port > 65535) configError("MYSQL_PORT is invalid.");
       if (environment !== "production") {
         if (!isApprovedLocalHost(host)) configError("Local and test database connections require an approved loopback MYSQL_HOST.");
         if (!LOCAL_DATABASE_PATTERN.test(database)) {
@@ -20887,20 +20890,22 @@ var require_config = __commonJS({
       } else {
         const auth = authConfig(env);
         if (auth.origin !== PRODUCTION_ORIGIN) configError("Production APP_ORIGIN must be https://www.connectmytours.com.");
-        if (!host || isLoopbackHost(host)) configError("Production MYSQL_HOST must be a non-loopback host.");
-        if (!database || LOCAL_DATABASE_PATTERN.test(database) || !DATABASE_IDENTIFIER_PATTERN.test(database)) {
-          configError("Production MYSQL_DATABASE must be a non-local, valid database identifier.");
+        const normalizedHost = host.toLowerCase();
+        if (!(normalizedHost === "127.0.0.1" || normalizedHost === "localhost")) {
+          configError("Hostinger production MYSQL_HOST must be 127.0.0.1 or localhost.");
         }
-        if (!env.MYSQL_USER || typeof env.MYSQL_USER !== "string" || !env.MYSQL_USER.trim()) {
-          configError("Set MYSQL_USER before connecting to the production database.");
+        if (port !== 3306) configError("Hostinger production MYSQL_PORT must be 3306.");
+        if (database !== HOSTINGER_PRODUCTION_DATABASE) {
+          configError("Hostinger production MYSQL_DATABASE does not match the dedicated blog database.");
+        }
+        if (typeof env.MYSQL_USER !== "string" || env.MYSQL_USER.trim() !== HOSTINGER_PRODUCTION_USER) {
+          configError("Hostinger production MYSQL_USER does not match the dedicated blog database user.");
         }
         if (typeof env.MYSQL_PASSWORD !== "string" || !env.MYSQL_PASSWORD) {
           configError("Set MYSQL_PASSWORD privately before connecting to the production database.");
         }
         uploadConfig(env);
       }
-      const port = Number(env.MYSQL_PORT || 3306);
-      if (!Number.isInteger(port) || port < 1 || port > 65535) configError("MYSQL_PORT is invalid.");
       if (!env.MYSQL_USER || typeof env.MYSQL_PASSWORD !== "string") {
         configError("Set MYSQL_USER and MYSQL_PASSWORD privately before connecting.");
       }

@@ -16,10 +16,10 @@ const post = { title: "A temple travel guide", slug: "temple-travel-guide", cate
 const safeSecret = () => randomBytes(32).toString("hex");
 const productionEnv = (overrides = {}) => ({
   NODE_ENV: "production",
-  MYSQL_HOST: "mysql.hostinger.example",
+  MYSQL_HOST: "127.0.0.1",
   MYSQL_PORT: "3306",
-  MYSQL_DATABASE: "u123456789_connectmytours",
-  MYSQL_USER: "u123456789_blog",
+  MYSQL_DATABASE: "u284223597_cmt_blog",
+  MYSQL_USER: "u284223597_cmt_blog",
   MYSQL_PASSWORD: "test-only-password",
   APP_ORIGIN: "https://www.connectmytours.com",
   SESSION_SECRET: safeSecret(),
@@ -41,7 +41,7 @@ test("development and test database configuration remain loopback-only", () => {
 
 test("production database configuration requires the exact HTTPS production origin", () => {
   const valid = productionEnv();
-  assert.equal(databaseConfig(valid).host, valid.MYSQL_HOST);
+  assert.equal(databaseConfig(valid).host, "127.0.0.1");
   for (const origin of [
     "http://www.connectmytours.com",
     "https://www.connectmytours.com/blog",
@@ -51,12 +51,14 @@ test("production database configuration requires the exact HTTPS production orig
     "https://:password@www.connectmytours.com",
     "https://connectmytours.com",
   ]) assert.throws(() => databaseConfig(productionEnv({ APP_ORIGIN: origin })), { code: "CONFIGURATION" });
-  for (const host of ["127.0.0.1", "127.0.0.2", "::1", "::ffff:127.0.0.1"]) {
+  for (const host of ["127.0.0.2", "::1", "::ffff:127.0.0.1", "mysql.hostinger.example"]) {
     assert.throws(() => databaseConfig(productionEnv({ MYSQL_HOST: host })), { code: "CONFIGURATION" });
   }
-  for (const database of ["connect_my_tours_blog_local", "connect_my_tours_blog_test", ""]) {
+  for (const database of ["connect_my_tours_blog_local", "connect_my_tours_blog_test", "u284223597_other", ""]) {
     assert.throws(() => databaseConfig(productionEnv({ MYSQL_DATABASE: database })), { code: "CONFIGURATION" });
   }
+  assert.equal(databaseConfig(productionEnv({ MYSQL_HOST: "localhost" })).host, "127.0.0.1");
+  assert.throws(() => databaseConfig(productionEnv({ MYSQL_USER: "u284223597_other" })), { code: "CONFIGURATION" });
   assert.throws(() => databaseConfig(productionEnv({ MYSQL_PASSWORD: "" })), { code: "CONFIGURATION" });
   assert.throws(() => databaseConfig(productionEnv({ MYSQL_USER: "" })), { code: "CONFIGURATION" });
   assert.throws(() => databaseConfig(productionEnv({ MYSQL_PORT: "70000" })), { code: "CONFIGURATION" });
@@ -83,7 +85,7 @@ test("migration validation rejects unsafe configuration before opening a connect
   const previous = Object.fromEntries(keys.map((key) => [key, process.env[key]]));
   let connectionAttempted = false;
   try {
-    Object.assign(process.env, productionEnv({ MYSQL_HOST: "127.0.0.1" }));
+    Object.assign(process.env, productionEnv({ MYSQL_DATABASE: "u284223597_wrong" }));
     await assert.rejects(runMigrations({
       createConnection: async () => {
         connectionAttempted = true;

@@ -166,3 +166,11 @@ This runner bundles the migration runtime and SQL, uses only injected
 `process.env` values, performs the existing production validation first, and
 supports an idempotent rerun. It does not create an administrator or enable
 uploads.
+
+On 2026-10-07 the standalone command reached MySQL but returned an
+authentication denial for the configured production blog user. No migration SQL
+ran and no tables or administrator were created. Verify the dedicated Hostinger
+database user's credentials and host permissions privately before another
+migration window.
+
+The credential refresh and redeploy on 2026-10-07 did not resolve authentication: node dist/blog-migrate.cjs migrate still stopped at MySQL login. No schema change occurred. The next focused action is a private Hostinger check that the environment password matches the actual dedicated user password and that the user is granted access from the application's Hostinger host/network.

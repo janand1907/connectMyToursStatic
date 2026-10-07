@@ -124,3 +124,9 @@ The migration execution plan now uses a committed standalone bundle,
 `dist/blog-migrate.cjs`, so production migration does not depend on
 Hostinger's source-side dependency layout. It is built with
 `npm run blog:build-runner` and run as `node dist/blog-migrate.cjs migrate`.
+
+The first standalone production attempt reached MySQL and was rejected by the
+dedicated user's credentials. Production schema and admin provisioning remain
+pending.
+
+The subsequent private credential refresh and environment redeploy completed, but the standalone retry still failed at MySQL authentication. No production SQL ran, and temporary SSH access was removed. Resolve the Hostinger user password/host-permission mismatch before the next migration approval.

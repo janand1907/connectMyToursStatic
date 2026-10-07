@@ -112,3 +112,9 @@ until the runtime dependency issue is corrected and approved.
 - [ ] The deployed runner executes without source-side `node_modules`.
 - [ ] Invalid production configuration fails before any connection.
 - [ ] Only `node dist/blog-migrate.cjs migrate` is run after approval.
+
+The `9d2dbc9` deployment passed its build and public smoke gate, but migration
+stopped at database authentication. Do not retry until the dedicated database
+user credentials and host permissions are corrected privately.
+
+The credential refresh/redeploy was completed on 2026-10-07, but the retry returned the same non-secret authentication failure. SSH access and its temporary key were revoked; migration, admin provisioning, and schema changes remain pending.
