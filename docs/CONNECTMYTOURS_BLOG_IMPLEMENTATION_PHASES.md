@@ -111,3 +111,16 @@ uncommitted blog code was deployed.
 - The production database runbook and release gate checklist are documented in
   `docs/CONNECTMYTOURS_PRODUCTION_DB_SETUP_RUNBOOK.md` and
   `docs/CONNECTMYTOURS_RELEASE_GATE_CHECKLIST.md`. They remain planning only.
+
+### 2026-10-07 controlled release stop
+
+The `dfaa53a` release deployed successfully and existing-site smoke checks
+passed. Production migration was stopped before DB connection because the
+Hostinger runtime could not resolve `mysql2/promise`. No production schema,
+admin, or upload state changed. Temporary SSH access was removed; a focused
+runtime dependency fix is pending.
+
+The migration execution plan now uses a committed standalone bundle,
+`dist/blog-migrate.cjs`, so production migration does not depend on
+Hostinger's source-side dependency layout. It is built with
+`npm run blog:build-runner` and run as `node dist/blog-migrate.cjs migrate`.

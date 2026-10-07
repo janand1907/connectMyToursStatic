@@ -196,3 +196,22 @@ The first deployment must leave image uploads disabled. Do not choose a usable
 `BLOG_UPLOAD_DIR` until Hostinger confirms a durable, writable, backed-up
 directory outside the application release and public/build folders. A future
 storage-adapter approval is required before enabling uploads.
+
+## 2026-10-07 controlled release stop
+
+Commit `dfaa53a` was pushed to `master` and Hostinger completed the deployment.
+The homepage, About, Contact, and Chennai package smoke checks passed. The
+approved migration command then stopped before opening a database connection:
+the deployed runtime could not resolve `mysql2/promise`. No schema change or
+administrator provisioning followed. Temporary SSH access and its key were
+removed. A focused runner/dependency fix is required before another release
+window.
+
+## Standalone migration runner
+
+The source-side Hostinger SSH path does not expose a complete dependency tree,
+so migration must use the committed `dist/blog-migrate.cjs` bundle. Build it
+locally with `npm run blog:build-runner`, deploy that reviewed artifact, and run
+`node dist/blog-migrate.cjs migrate` from the deployed app. The bundle reads
+only `process.env`, validates before connecting, embeds migration SQL, and does
+not contain credentials. A new controlled release is still required.

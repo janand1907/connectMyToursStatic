@@ -96,3 +96,19 @@ previous reviewed commit, restore the database backup when schema or data must b
 reverted, remove or disable a newly created administrator if needed, then repeat
 the smoke test. Document any manual database reconciliation because migrations
 have no automatic rollback.
+
+## 2026-10-07 release result
+
+The `dfaa53a` push and Hostinger deployment succeeded, and existing public-page
+smoke tests passed. The release stopped at the migration gate because the
+deployed command could not resolve `mysql2/promise`; this occurred before any DB
+connection. Production schema and data are unchanged, no admin exists, uploads
+remain disabled, and temporary SSH access was removed. Do not retry migration
+until the runtime dependency issue is corrected and approved.
+
+## Standalone runner gate
+
+- [ ] `dist/blog-migrate.cjs` was rebuilt from the reviewed migrations.
+- [ ] The deployed runner executes without source-side `node_modules`.
+- [ ] Invalid production configuration fails before any connection.
+- [ ] Only `node dist/blog-migrate.cjs migrate` is run after approval.

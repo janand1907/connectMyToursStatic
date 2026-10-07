@@ -8,12 +8,15 @@
     "start": "next start",
     "lint": "next lint",
     "blog:migrate": "node --conditions=react-server scripts/blog-migrate.js",
+    "blog:build-runner": "node scripts/build-blog-migrate.js",
+    "blog:migrate:standalone": "node dist/blog-migrate.cjs migrate",
     "blog:create-admin": "node --conditions=react-server scripts/create-blog-admin.js",
     "blog:test": "node scripts/test-blog.js",
     "blog:test:unit": "node --conditions=react-server --test tests/blog/unit.test.js"
   },
   "dependencies": {
     "autoprefixer": "^10.6.1",
+    "esbuild": "^0.28.2",
     "mysql2": "^3.24.5",
     "next": "^14.2.0",
     "nodemailer": "^9.0.4",

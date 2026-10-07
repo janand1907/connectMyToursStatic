@@ -142,3 +142,27 @@ automatic down-migration command. If a migration or initial admin provisioning
 fails, stop deployment, restore the verified database backup when appropriate,
 disable the affected administrator if created, and record the final state before
 retrying. Application rollback means redeploying the previous reviewed commit.
+
+## 2026-10-07 migration attempt
+
+The reviewed `dfaa53a` deployment completed, but `npm run blog:migrate` stopped
+before connecting because the Hostinger runtime could not resolve
+`mysql2/promise`. No production SQL ran, no blog tables were created, and no
+admin was created. Temporary SSH access was disabled and the temporary key was
+deleted. Migration remains pending until the deployed dependency tree is fixed
+and a new controlled release is approved.
+
+## Standalone migration command
+
+Hostinger's source-side `node_modules` path is not reliable for the migration
+CLI. The release candidate now includes `dist/blog-migrate.cjs`, produced by
+`npm run blog:build-runner`. After deployment, run exactly:
+
+```sh
+node dist/blog-migrate.cjs migrate
+```
+
+This runner bundles the migration runtime and SQL, uses only injected
+`process.env` values, performs the existing production validation first, and
+supports an idempotent rerun. It does not create an administrator or enable
+uploads.

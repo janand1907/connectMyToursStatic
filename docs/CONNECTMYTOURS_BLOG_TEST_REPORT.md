@@ -174,3 +174,21 @@ The correction moves `tailwindcss`, `postcss`, and `autoprefixer` into
 production dependencies. Blog tests, lint, build, diff checks, and a disposable
 production-only dependency install simulation pass. The correction remains
 local and unpushed.
+
+## 2026-10-07 controlled release result
+
+The runner-environment fix was pushed as `dfaa53a`, and Hostinger completed its
+deployment. Existing homepage, About, Contact, and Chennai package smoke checks
+passed. The approved production migration stopped before DB connection with
+`Cannot find module 'mysql2/promise'` in the deployed runtime. No production
+tables, admin, or sample content were created. Temporary SSH access and its
+key were removed. The next action is a focused dependency/runtime fix followed
+by a new approval window.
+
+## Standalone runner verification
+
+`dist/blog-migrate.cjs` bundles the migration code, `mysql2`, configuration
+validation, and all migration SQL. It resolves without source-side modules and
+fails safely on an invalid production origin before any database connection.
+The full isolated MariaDB blog, admin, and public suites pass after this
+change. Production migration and administrator creation remain pending.
