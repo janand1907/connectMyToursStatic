@@ -6,14 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "blog:migrate": "node --conditions=react-server scripts/blog-migrate.js",
+    "blog:create-admin": "node --conditions=react-server scripts/create-blog-admin.js",
+    "blog:test": "node scripts/test-blog.js",
+    "blog:test:unit": "node --conditions=react-server --test tests/blog/unit.test.js"
   },
   "dependencies": {
+    "mysql2": "^3.24.5",
     "next": "^14.2.0",
     "nodemailer": "^9.0.4",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
-    "sharp": "^0.35.3"
+    "server-only": "^0.0.1",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",

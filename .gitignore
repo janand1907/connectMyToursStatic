@@ -2,4 +2,9 @@ node_modules
 .next
 out
 .env*.local
+.env
+.env.*
+!.env.example
+.local/
+.local-blog-uploads/
 .DS_Store

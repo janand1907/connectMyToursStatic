@@ -2,7 +2,7 @@ import { Roboto, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import PromoPopup from "@/components/enquiry/PromoPopup";
+import PromoPopupGate from "@/components/enquiry/PromoPopupGate";
 import { pageMetadata, travelAgencySchema, JsonLd } from "@/lib/seo";
 
 const roboto = Roboto({
@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main id="main-content">{children}</main>
         <Footer />
-        <PromoPopup />
+        <PromoPopupGate />
       </body>
     </html>
   );
