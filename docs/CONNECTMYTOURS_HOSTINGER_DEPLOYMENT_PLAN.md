@@ -29,10 +29,11 @@ fix removes unnecessary Next-only `server-only` guards from the migration
 dependency chain; `mysql2` and `server-only` remain runtime dependencies. No
 migration or destructive retry was performed.
 
-The local isolated blog harness is separately blocked by Homebrew MySQL 8.4.11
-crashing with SIGSEGV during isolated datadir initialization on Apple
-Silicon/macOS 26.6.2. The harness now detects common Homebrew paths and fails
-with a clear compatible-binary requirement without using `.env.local`.
+The local isolated blog harness passes with MariaDB 13.0.2 using
+`TEST_MYSQLD_PATH=/opt/homebrew/opt/mariadb/bin/mariadbd`. It retains temporary
+datadir, loopback-only, and cleanup protections and never uses `.env.local`.
+Homebrew MySQL 8.4.11 remains unsuitable on this macOS version because it
+crashes during isolated initialization.
 
 Execution record, 2026-10-07:
 

@@ -63,6 +63,8 @@ async function main() {
   const datadir = path.join(directory, "data");
   const socketPath = path.join(directory, "mysql.sock");
   const mysqld = await resolveMysqld();
+  const maria = path.basename(mysqld) === "mariadbd";
+  const initializer = maria ? path.join(path.dirname(mysqld), "mariadb-install-db") : mysqld;
   let server;
   let root;
   let serverFailure;
@@ -72,15 +74,20 @@ async function main() {
   try {
     await fs.mkdir(datadir, { mode: 0o700 });
     try {
-      await run(mysqld, ["--no-defaults", "--initialize-insecure", `--datadir=${datadir}`, `--log-error=${directory}/mysql.log`]);
+      const initArgs = maria
+        ? ["--no-defaults", `--datadir=${datadir}`, "--auth-root-authentication-method=normal", "--skip-test-db"]
+        : ["--no-defaults", "--initialize-insecure", `--datadir=${datadir}`, `--log-error=${directory}/mysql.log`];
+      await run(initializer, initArgs);
     } catch (error) {
       const detail = await mysqlLog(directory);
       throw new Error(`Temporary MySQL initialization failed. ${detail || error.message}`);
     }
     const port = await freePort();
-    server = spawn(mysqld, ["--no-defaults", `--datadir=${datadir}`, `--socket=${socketPath}`, `--port=${port}`,
-      "--bind-address=127.0.0.1", "--mysqlx=0", "--skip-log-bin", `--pid-file=${directory}/mysql.pid`,
-      `--log-error=${directory}/mysql.log`], { stdio: "ignore" });
+    const serverArgs = ["--no-defaults", `--datadir=${datadir}`, `--socket=${socketPath}`, `--port=${port}`,
+      "--bind-address=127.0.0.1", "--skip-log-bin", `--pid-file=${directory}/mysql.pid`,
+      `--log-error=${directory}/mysql.log`];
+    if (!maria) serverArgs.splice(5, 0, "--mysqlx=0");
+    server = spawn(mysqld, serverArgs, { stdio: "ignore" });
     serverExited = new Promise((resolve) => { server.once("exit", resolve); server.once("error", (error) => { serverFailure = error; resolve(); }); });
     for (let attempt = 0; attempt < 200; attempt++) {
       if (serverFailure || server.exitCode !== null) throw new Error("Temporary MySQL could not start.");

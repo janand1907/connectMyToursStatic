@@ -33,10 +33,11 @@ environment with the complete application dependencies. The local runner fix
 also removes unnecessary `server-only` imports from the migration CLI's
 dependency chain while preserving those guards for request-facing modules.
 
-The local full-suite gate is currently environment-blocked: Homebrew MySQL
-8.4.11 crashes during isolated initialization on Apple Silicon/macOS 26.6.2.
-Use a compatible local `mysqld` through `TEST_MYSQLD_PATH`; do not point the
-harness at the existing local or production database.
+The local full-suite gate passes with MariaDB 13.0.2 through
+`TEST_MYSQLD_PATH=/opt/homebrew/opt/mariadb/bin/mariadbd`. The harness uses a
+temporary isolated datadir and loopback credentials; do not point it at the
+existing local or production database. Homebrew MySQL 8.4.11 remains unsuitable
+on this macOS version because it crashes during isolated initialization.
 
 ## Before requesting execution approval
 
