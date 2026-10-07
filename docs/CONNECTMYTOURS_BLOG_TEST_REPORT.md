@@ -48,6 +48,15 @@ CSS/system font variables in `app/globals.css`. This eliminates the external
 Google font fetch from the production build while preserving the existing
 display/body font roles. Full isolated blog tests, lint, and build pass locally.
 
+The corrected release `d42810e` deployed successfully and public pre-migration
+smoke checks passed. Production migration was attempted once and stopped before
+database connection because the source-side runner could not resolve
+`@next/env`. No production tables, admin, or sample content were created.
+
+The local runner fix removes `@next/env` from `scripts/blog-cli.js`. A production
+simulation now resolves the migration modules and fails safely on invalid origin
+before any connection. Full isolated tests, lint, and build pass locally.
+
 The local isolated MySQL harness was then reproduced independently. Homebrew
 MySQL 8.4.11 on Apple Silicon/macOS 26.6.2 crashed with SIGSEGV during
 `--initialize-insecure`. A local MariaDB 13.0.2 binary is now used through

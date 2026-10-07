@@ -73,6 +73,15 @@ The three pending commits were pushed to `master`, but Hostinger's build of
 `530daef` failed before deployment in `app/layout.js` while loading Google fonts
 through `next/font`. The previous live revision remains active.
 
+Commit `d42810e` is now deployed/current on Hostinger. Public pre-migration
+smoke checks passed, but migration stopped before connection because the
+source-side runner could not resolve `@next/env`. Production schema and admin
+provisioning remain pending.
+
+The local migration runner fix removes `@next/env` and unnecessary Next runtime
+requirements from the CLI path. Production continues to use injected process
+variables only; local dotenv loading is limited to non-production.
+
 The local build fix removes the Google font import from `app/layout.js` and
 defines CSS/system fallback stacks in `app/globals.css`. Local tests, lint, and
 production build pass; production migration remains pending.

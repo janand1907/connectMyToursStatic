@@ -36,6 +36,15 @@ The local font fix removes `next/font/google` from `app/layout.js` and supplies
 CSS/system fallback stacks. Local build and integration checks pass; migration
 remains pending until this corrected release is deployed successfully.
 
+The corrected font release `d42810e` is deployed/current and public
+pre-migration smoke checks passed. Migration remains blocked because the
+source-side Hostinger runner cannot resolve `@next/env`; temporary SSH access
+was disabled after the failed attempt.
+
+The local fix removes `@next/env` from the migration CLI path. Production
+configuration remains process-environment only and is still validated before
+any database connection.
+
 Database/user creation, backup completion, and private runtime-variable
 application are complete. Applying the variables redeployed master commit
 `40cfa127`; the corrected blog release is now current. No production schema

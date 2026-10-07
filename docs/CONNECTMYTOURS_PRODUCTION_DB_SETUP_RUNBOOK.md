@@ -49,6 +49,17 @@ The local release fix removes the `next/font/google` build dependency from
 `app/layout.js` and uses CSS/system fallback stacks. Production migration stays
 blocked until Hostinger successfully deploys the corrected build.
 
+The corrected build `d42810e` deployed successfully and public pre-migration
+smoke checks passed. The migration runner then stopped before connecting because
+the Hostinger source-side shell could not resolve `@next/env`. No tables or
+schema changes were created. Temporary SSH access was disabled and the
+temporary key was removed.
+
+The migration runner fix removes its `@next/env` dependency. It no longer
+requires Next.js runtime modules to start, and production uses only injected
+process variables. Local dotenv loading is limited to non-production and never
+overrides an existing environment variable.
+
 ## Before requesting execution approval
 
 - The reviewed release candidate is identified by a local Git commit but has not

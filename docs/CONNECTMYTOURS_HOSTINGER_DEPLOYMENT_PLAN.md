@@ -45,6 +45,17 @@ Local fix prepared: `app/layout.js` no longer imports `next/font/google`. The
 site now defines stable CSS/system font stacks in `app/globals.css`, preserving
 the display/body font roles without a build-time Google metadata request.
 
+Controlled release, 2026-10-07: commit `d42810e` was pushed and Hostinger
+reports it as completed/current. Public pre-migration smoke pages loaded. The
+approved migration then stopped before database connection because the
+Hostinger source-side shell could not resolve `@next/env`. No retry was made;
+temporary SSH access was disabled and the temporary key was removed.
+
+The local migration runner fix removes `@next/env` entirely from the CLI path.
+Production now uses only Hostinger-injected process variables; development and
+test may load local dotenv files only when a variable is not already present.
+Production validation and loopback/test database restrictions are unchanged.
+
 Execution record, 2026-10-07:
 
 - A dedicated Connect My Tours blog database and database user were created in

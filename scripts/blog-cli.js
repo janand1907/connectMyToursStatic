@@ -1,10 +1,25 @@
+const fs = require("node:fs");
 const path = require("node:path");
 const readline = require("node:readline");
 const { Writable } = require("node:stream");
-const { loadEnvConfig } = require("@next/env");
 
 function loadLocalEnvironment() {
-  loadEnvConfig(path.resolve(__dirname, ".."), true, { info() {}, error() {} });
+  // Hostinger injects production variables into the process. Never read local
+  // dotenv files in production, and never let a file override an injected key.
+  if (process.env.NODE_ENV === "production") return;
+  const project = path.resolve(__dirname, "..");
+  for (const filename of [".env.local", ".env"]) {
+    const file = path.join(project, filename);
+    let contents;
+    try { contents = fs.readFileSync(file, "utf8"); } catch { continue; }
+    for (const line of contents.split(/\r?\n/)) {
+      const match = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*?)\s*$/);
+      if (!match || process.env[match[1]] !== undefined) continue;
+      let value = match[2];
+      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) value = value.slice(1, -1);
+      process.env[match[1]] = value;
+    }
+  }
 }
 
 function reportError(error) {
