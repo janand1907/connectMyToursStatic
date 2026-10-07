@@ -1,5 +1,20 @@
 # Connect My Tours blog: local verification report
 
+## Latest verification, 2026-10-07
+
+The production migration succeeded and an idempotent rerun passed on release
+`5cdd282`. All eight tables exist; admin, category, and post counts are zero.
+The old admin source script failed before database access because Hostinger SSH
+could not resolve `server-only`. No production admin was created.
+
+The new local standalone admin bundle was tested against a temporary isolated
+MariaDB instance. It created one admin with a hash accepted by app login,
+refused a second account, rejected invalid configuration before connecting,
+and left no test data after harness cleanup. Full isolated suite: 28 unit and
+integration checks, 7 admin HTTP checks, and 4 public HTTP checks passed.
+Production uploads remain disabled; provisioning variables remain in Hostinger
+pending successful first-admin creation and private removal.
+
 Date: 2026-10-07
 Scope: local Phase 1, Phase 2, and Phase 3 verification
 
@@ -20,7 +35,7 @@ Scope: local Phase 1, Phase 2, and Phase 3 verification
 ## Automated checks
 
 - `npm run blog:test`: passed.
-  - Phase 1/configuration: 27 checks passed.
+  - Phase 1/configuration: 28 checks passed after the standalone admin check.
   - Phase 2 admin HTTP: 7 checks passed.
   - Phase 3 public-blog HTTP: 4 checks passed.
 - `npm run lint`: passed with no warnings or errors.

@@ -1,5 +1,22 @@
 # Connect My Tours: Hostinger deployment plan
 
+## Current status, 2026-10-07
+
+Release `5cdd282` is deployed. The standalone production migration applied all
+seven SQL files, created the eight expected tables, and passed an idempotency
+rerun. The dedicated database has zero admins, categories, and posts. Production
+uploads remain disabled. The source-side first-admin command then failed before
+database access because Hostinger's SSH checkout could not resolve `server-only`.
+
+A standalone `dist/blog-create-admin.cjs` runner is now prepared locally. It
+bundles its dependencies, validates the strict production database gate and
+private provisioning variables before connecting, takes a provisioning lock,
+refuses to create a second user, writes an audit entry, and uses the same scrypt
+password hashing code as login. This local change is not deployed. The four
+temporary `BLOG_ADMIN_*` variables remain in Hostinger until successful admin
+creation, then must be removed privately. The next release requires separate
+push/deployment approval.
+
 Status: controlled environment setup completed; migrations and first-admin
 creation remain separately gated.
 

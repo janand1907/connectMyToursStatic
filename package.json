@@ -11,6 +11,8 @@
     "blog:build-runner": "node scripts/build-blog-migrate.js",
     "blog:migrate:standalone": "node dist/blog-migrate.cjs migrate",
     "blog:create-admin": "node --conditions=react-server scripts/create-blog-admin.js",
+    "blog:build-admin-runner": "node scripts/build-blog-admin.js",
+    "blog:create-admin:standalone": "node dist/blog-create-admin.cjs create",
     "blog:test": "node scripts/test-blog.js",
     "blog:test:unit": "node --conditions=react-server --test tests/blog/unit.test.js"
   },

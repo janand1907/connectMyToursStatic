@@ -1,5 +1,19 @@
 # Connect My Tours: release gate checklist
 
+## Current admin provisioning gate, 2026-10-07
+
+- [x] Release `5cdd282` deployed and production migration verified.
+- [x] Seven migrations applied; all eight expected tables exist.
+- [x] Admin, category, and post counts are zero.
+- [x] Source-side admin script failure confirmed before database access.
+- [x] Standalone admin runner prepared and tested with isolated local MariaDB.
+- [ ] Push and deploy the standalone runner after separate approval.
+- [ ] Create exactly one production admin with the bundled command.
+- [ ] Verify authenticated admin pages and logout.
+- [ ] Remove temporary `BLOG_ADMIN_*` variables and disable temporary SSH.
+
+Production uploads remain disabled throughout this gate.
+
 `master` is an auto-deploy branch. Do not push until every required gate is
 checked and the required production actions have separate approval.
 

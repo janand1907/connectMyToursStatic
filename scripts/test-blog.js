@@ -106,6 +106,7 @@ async function main() {
       NODE_ENV: "test", BLOG_INTEGRATION_TEST: "isolated-local-mysql",
     });
     console.log("Testing against an isolated temporary MySQL instance on loopback; no existing database is used.");
+    await run(process.execPath, ["scripts/build-blog-admin.js"], { env, visible: true });
     await run(process.execPath, ["--conditions=react-server", "--test", "tests/blog/unit.test.js", "tests/blog/integration.test.js"], { env, visible: true });
     const webPort = await freePort();
     const webOrigin = `http://127.0.0.1:${webPort}`;

@@ -1,5 +1,14 @@
 # Connect My Tours blog implementation phases
 
+## Latest production status, 2026-10-07
+
+Phases 1–3 are deployed. Production migration completed with seven applied
+migrations and eight tables; no admin or content exists yet. Hostinger's SSH
+checkout could not resolve `server-only` while running the normal admin source
+script. A bundled first-admin runner is prepared locally and awaits a separate
+release approval. Production uploads remain disabled. Admin creation and live
+authenticated acceptance remain pending.
+
 ## Phase 1 — foundation
 
 Status: complete in local source.

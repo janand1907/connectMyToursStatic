@@ -1,5 +1,30 @@
 # Connect My Tours: production database runbook
 
+## Current status, 2026-10-07
+
+Production migration is complete on release `5cdd282`: seven migrations, eight
+expected tables, and an idempotent rerun. Admin, category, and post counts are
+all zero. The source-side `blog:create-admin` command failed before connecting
+because Hostinger SSH cannot resolve `server-only` from its incomplete dependency
+tree. No admin was created.
+
+The reviewed local fix is a bundled `dist/blog-create-admin.cjs`. After a
+separately approved push and successful Hostinger deployment, run it from the
+deployed application directory with private Hostinger environment values:
+
+```sh
+node dist/blog-create-admin.cjs create
+```
+
+On Hostinger use its Node 22 binary if `node` is absent from the SSH shell PATH.
+The command uses `BLOG_ADMIN_NAME`, `BLOG_ADMIN_EMAIL`, `BLOG_ADMIN_PASSWORD`,
+and `BLOG_ADMIN_ROLE=admin`. It refuses an existing admin, validates all inputs
+and the production database target before connecting, then inserts one admin and
+one audit event atomically. Verify one active admin and zero categories/posts.
+Remove all four temporary provisioning variables privately after success and
+recheck login after Hostinger's required restart. Do not retry the old source
+script on Hostinger.
+
 Status: database/user and environment setup completed. A temporary SSH runner
 was used for read-only inspection and disabled afterward. Production migration
 is paused because the current deployed revision does not contain the approved

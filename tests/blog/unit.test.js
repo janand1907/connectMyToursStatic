@@ -10,6 +10,7 @@ const { hashPassword, verifyPassword } = require("../../lib/auth/passwords");
 const { prepareBlogImage, saveBlogImage } = require("../../lib/blog/uploads");
 const { localStorage } = require("../../lib/blog/storage/local");
 const { runMigrations } = require("../../lib/blog/migrations");
+const { createFirstAdmin, provisionConfig } = require("../../dist/blog-create-admin.cjs");
 
 const post = { title: "A temple travel guide", slug: "temple-travel-guide", categoryId: randomUUID(), content: "Travel guidance." };
 
@@ -78,6 +79,25 @@ test("production upload configuration has an explicit disabled mode", () => {
   assert.equal(config.enabled, false);
   assert.equal(config.directory, null);
   assert.equal(config.maxBytes, 5242880);
+});
+
+test("standalone admin validates production and provisioning before connecting", async () => {
+  const password = randomBytes(24).toString("hex");
+  const valid = productionEnv({ BLOG_ADMIN_NAME: "First Admin", BLOG_ADMIN_EMAIL: "first@example.test", BLOG_ADMIN_PASSWORD: password, BLOG_ADMIN_ROLE: "admin" });
+  assert.equal(provisionConfig(valid).admin.role, "admin");
+  let connected = false;
+  for (const invalid of [
+    { MYSQL_DATABASE: "connect_my_tours_blog_test" },
+    { APP_ORIGIN: "https://wrong.example" },
+    { BLOG_ADMIN_PASSWORD: "" },
+    { BLOG_ADMIN_ROLE: "editor" },
+  ]) {
+    await assert.rejects(createFirstAdmin({ ...valid, ...invalid }, async () => {
+      connected = true;
+      throw new Error("Connection should not be attempted.");
+    }));
+  }
+  assert.equal(connected, false);
 });
 
 test("migration validation rejects unsafe configuration before opening a connection", async () => {

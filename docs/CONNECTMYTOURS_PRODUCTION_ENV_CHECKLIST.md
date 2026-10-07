@@ -1,5 +1,14 @@
 # Connect My Tours: production environment checklist
 
+## Current provisioning status, 2026-10-07
+
+Permanent production runtime variables are configured privately. Migration
+completed on release `5cdd282`; the first-admin attempt failed before database
+access because the old source runner required a missing Hostinger SSH module.
+The temporary `BLOG_ADMIN_NAME`, `BLOG_ADMIN_EMAIL`, `BLOG_ADMIN_PASSWORD`, and
+`BLOG_ADMIN_ROLE` values are present privately and must be removed after the
+bundled admin runner succeeds. Do not record their values in this document.
+
 Status: names only. Store values privately in Hostinger; do not put production
 secrets in Git, documentation, or local shared files.
 

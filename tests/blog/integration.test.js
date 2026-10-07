@@ -29,16 +29,35 @@ function cli(script, env = {}, args = []) {
   });
 }
 
+function standaloneAdmin(env = {}) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, ["dist/blog-create-admin.cjs", "create"],
+      { env: { ...process.env, ...env }, stdio: ["ignore", "pipe", "pipe"] });
+    let output = "";
+    child.stdout.on("data", (data) => { output += data; });
+    child.stderr.on("data", (data) => { output += data; });
+    child.once("error", reject);
+    child.once("exit", (code) => resolve({ code, output }));
+  });
+}
+
 before(async () => {
   assert.equal(process.env.BLOG_INTEGRATION_TEST, "isolated-local-mysql", "Run npm run blog:test to use an isolated local MySQL instance.");
   assert.equal(process.env.MYSQL_HOST, "127.0.0.1");
   assert.equal(process.env.MYSQL_DATABASE, "connect_my_tours_blog_test");
   const migration = await cli("scripts/blog-migrate.js", {}, ["--create-database"]);
   assert.equal(migration.code, 0, migration.output);
-  const created = await cli("scripts/create-blog-admin.js", { BLOG_ADMIN_NAME: "Test Administrator", BLOG_ADMIN_EMAIL: "admin@example.test", BLOG_ADMIN_PASSWORD: password });
+  const created = await standaloneAdmin({ BLOG_ADMIN_NAME: "Test Administrator", BLOG_ADMIN_EMAIL: "admin@example.test", BLOG_ADMIN_PASSWORD: password, BLOG_ADMIN_ROLE: "admin" });
   assert.equal(created.code, 0, created.output);
   assert.ok(!created.output.includes(password));
   assert.ok(!created.output.includes(process.env.MYSQL_PASSWORD));
+  const duplicate = await standaloneAdmin({ BLOG_ADMIN_NAME: "Second Administrator", BLOG_ADMIN_EMAIL: "second@example.test", BLOG_ADMIN_PASSWORD: password, BLOG_ADMIN_ROLE: "admin" });
+  assert.notEqual(duplicate.code, 0);
+  assert.match(duplicate.output, /already exists/);
+  assert.equal(Number((await query("SELECT COUNT(*) AS total FROM admin_users"))[0].total), 1);
+  const invalid = await standaloneAdmin({ MYSQL_HOST: "example.invalid", BLOG_ADMIN_NAME: "Test", BLOG_ADMIN_EMAIL: "test@example.test", BLOG_ADMIN_PASSWORD: password, BLOG_ADMIN_ROLE: "admin" });
+  assert.notEqual(invalid.code, 0);
+  assert.match(invalid.output, /Admin provisioning failed/);
   admin = await getAdminByEmailForAuth("admin@example.test");
 });
 
@@ -59,6 +78,8 @@ test("admin creation normalizes unique emails and stores a verifiable password h
   assert.notEqual(admin.password_hash, password);
   assert.equal(await verifyPassword(password, admin.password_hash), true);
   await assert.rejects(createAdmin({ name: "Duplicate", email: "ADMIN@EXAMPLE.TEST", password }), { code: "DUPLICATE" });
+  const normal = await cli("scripts/create-blog-admin.js", { BLOG_ADMIN_NAME: "Normal CLI Editor", BLOG_ADMIN_EMAIL: "cli-editor@example.test", BLOG_ADMIN_PASSWORD: password, BLOG_ADMIN_ROLE: "editor" });
+  assert.equal(normal.code, 0, normal.output);
 });
 
 test("sessions persist as hashes, expire, revoke, and enforce roles", async () => {
