@@ -1,23 +1,8 @@
-import { Roboto, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PromoPopupGate from "@/components/enquiry/PromoPopupGate";
 import { pageMetadata, travelAgencySchema, JsonLd } from "@/lib/seo";
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["500", "700", "900"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
 
 export const metadata = {
   ...pageMetadata("/"),
@@ -30,7 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${roboto.variable} ${dmSans.variable}`}>
+    <html lang="en">
       <body>
         <JsonLd data={travelAgencySchema()} />
         <a

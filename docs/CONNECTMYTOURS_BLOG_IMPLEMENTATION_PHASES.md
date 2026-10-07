@@ -69,6 +69,14 @@ unnecessary Next-only guards from the migration dependency chain while retaining
 runtime dependencies and production-gated configuration. Production migration
 and first-admin creation remain pending; uploads remain disabled.
 
+The three pending commits were pushed to `master`, but Hostinger's build of
+`530daef` failed before deployment in `app/layout.js` while loading Google fonts
+through `next/font`. The previous live revision remains active.
+
+The local build fix removes the Google font import from `app/layout.js` and
+defines CSS/system fallback stacks in `app/globals.css`. Local tests, lint, and
+production build pass; production migration remains pending.
+
 Hostinger database/user creation and the pre-migration backup are complete.
 Applying runtime variables redeployed current master commit `40cfa127`; no local
 uncommitted blog code was deployed.

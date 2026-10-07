@@ -37,6 +37,17 @@ access was disabled and the current temporary key was removed. The local fix
 removes unnecessary `server-only` imports from the migration CLI chain; both
 `mysql2` and `server-only` are already declared in runtime dependencies.
 
+The three pending commits were pushed to `master`, but Hostinger's build of
+`530daef` failed before deployment in `app/layout.js` while loading Google fonts
+through `next/font` (`@next/font` received a null response). The previous live
+revision remains active. No migration, SSH runner setup, or production schema
+change was attempted after the failed build.
+
+The local font fix removes `next/font/google` from `app/layout.js` and adds
+CSS/system font variables in `app/globals.css`. This eliminates the external
+Google font fetch from the production build while preserving the existing
+display/body font roles. Full isolated blog tests, lint, and build pass locally.
+
 The local isolated MySQL harness was then reproduced independently. Homebrew
 MySQL 8.4.11 on Apple Silicon/macOS 26.6.2 crashed with SIGSEGV during
 `--initialize-insecure`. A local MariaDB 13.0.2 binary is now used through

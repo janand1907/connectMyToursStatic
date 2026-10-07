@@ -26,6 +26,16 @@ isolated temporary datadir, loopback port, credentials, and cleanup. It does not
 fall back to an existing database. MySQL 8.4.11 remains incompatible with this
 macOS version because it crashes during isolated initialization.
 
+The three approved pending commits were pushed to `master`, but Hostinger's
+build of `530daef` failed before deployment in `app/layout.js` while loading
+Google fonts through `next/font` (`@next/font` received a null response). The
+previous live revision `d67a0296` remains active, so migration and admin gates
+remain blocked.
+
+The local font fix removes `next/font/google` from `app/layout.js` and supplies
+CSS/system fallback stacks. Local build and integration checks pass; migration
+remains pending until this corrected release is deployed successfully.
+
 Database/user creation, backup completion, and private runtime-variable
 application are complete. Applying the variables redeployed master commit
 `40cfa127`; the corrected blog release is now current. No production schema

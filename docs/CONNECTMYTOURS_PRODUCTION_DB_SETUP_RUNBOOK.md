@@ -39,6 +39,16 @@ temporary isolated datadir and loopback credentials; do not point it at the
 existing local or production database. Homebrew MySQL 8.4.11 remains unsuitable
 on this macOS version because it crashes during isolated initialization.
 
+The three approved local commits were pushed, but Hostinger's build of
+`530daef` failed before deployment in `app/layout.js` while loading Google fonts
+through `next/font` (`@next/font` received a null response). The previous live
+revision remains active. No SSH runner was enabled and no production migration
+or schema change was attempted.
+
+The local release fix removes the `next/font/google` build dependency from
+`app/layout.js` and uses CSS/system fallback stacks. Production migration stays
+blocked until Hostinger successfully deploys the corrected build.
+
 ## Before requesting execution approval
 
 - The reviewed release candidate is identified by a local Git commit but has not

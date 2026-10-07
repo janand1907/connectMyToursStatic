@@ -35,6 +35,16 @@ datadir, loopback-only, and cleanup protections and never uses `.env.local`.
 Homebrew MySQL 8.4.11 remains unsuitable on this macOS version because it
 crashes during isolated initialization.
 
+Release attempt, 2026-10-07: commits `9fd2873`, `fc250ef`, and `530daef` were
+pushed to `master`. Hostinger checked out `530daef`, but the build stopped in
+`app/layout.js` while loading `next/font` Google fonts (`@next/font` loader
+reported a null response). The previous live revision `d67a0296` remains
+active. Production migration was not attempted.
+
+Local fix prepared: `app/layout.js` no longer imports `next/font/google`. The
+site now defines stable CSS/system font stacks in `app/globals.css`, preserving
+the display/body font roles without a build-time Google metadata request.
+
 Execution record, 2026-10-07:
 
 - A dedicated Connect My Tours blog database and database user were created in
