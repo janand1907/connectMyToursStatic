@@ -13,13 +13,17 @@ failed before deployment because `tailwindcss` was not installed in the
 production dependency set. The previous revision remains active; migration and
 admin gates are blocked until a corrected release is separately approved.
 
-The corrected local release places Tailwind, PostCSS, and Autoprefixer in
-production dependencies. It is ready for a separate controlled redeploy
-approval; no migration has been run.
+The corrected release places Tailwind, PostCSS, and Autoprefixer in production
+dependencies. Commit `d67a0296` was pushed and Hostinger reports the deployment
+as completed/current. The approved migration attempt stopped before connecting
+because the source-side CLI could not resolve `server-only` and `mysql2`; no
+migration has been run. The local fix removes unnecessary Next-only guards from
+the CLI chain and retains both packages in runtime dependencies.
 
 Database/user creation, backup completion, and private runtime-variable
 application are complete. Applying the variables redeployed master commit
-`40cfa127`; no blog code, migrations, or admin provisioning were deployed.
+`40cfa127`; the corrected blog release is now current. No production schema
+change or admin provisioning has occurred.
 
 ## Before production setup approval
 

@@ -28,6 +28,15 @@ Scope: local Phase 1, Phase 2, and Phase 3 verification
 
 ## Production-gated database configuration
 
+Hostinger deployment of commit `d67a0296` completed/current after the Tailwind
+build-dependency fix. The approved production migration attempt stopped before
+any database connection because the SSH runner lacked the complete dependency
+tree (`server-only` and `mysql2` were unavailable to the source-side command).
+No production tables, admin, or sample content were created. Temporary SSH
+access was disabled and the current temporary key was removed. The local fix
+removes unnecessary `server-only` imports from the migration CLI chain; both
+`mysql2` and `server-only` are already declared in runtime dependencies.
+
 - Local/test execution remains limited to `127.0.0.1`, `localhost`, or `::1`
   and approved `connect_my_tours_blog_local` or
   `connect_my_tours_blog_test*` database names.

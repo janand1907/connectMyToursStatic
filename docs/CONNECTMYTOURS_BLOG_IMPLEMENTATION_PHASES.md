@@ -59,7 +59,15 @@ provisioning were not attempted.
 
 The local dependency fix moves Tailwind, PostCSS, and Autoprefixer into runtime
 dependencies required by the production build. Local tests, lint, build, and a
-production-only install simulation pass. The fix is not pushed yet.
+production-only install simulation pass. Commit `d67a0296` was pushed and
+Hostinger reports it as completed/current.
+
+The approved migration attempt stopped before connecting because the SSH runner
+did not expose `npm`, and the active release dependency tree did not expose
+`server-only` or `mysql2` to the source-side runner. The local fix removes
+unnecessary Next-only guards from the migration dependency chain while retaining
+runtime dependencies and production-gated configuration. Production migration
+and first-admin creation remain pending; uploads remain disabled.
 
 Hostinger database/user creation and the pre-migration backup are complete.
 Applying runtime variables redeployed current master commit `40cfa127`; no local

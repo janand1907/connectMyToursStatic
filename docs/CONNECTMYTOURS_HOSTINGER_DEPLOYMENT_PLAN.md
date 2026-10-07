@@ -17,8 +17,17 @@ dependencies. The previous working revision remains active. Migration was not
 run and the failure requires a separate local dependency/build fix approval.
 
 The local fix moves the Tailwind/PostCSS/Autoprefixer build dependencies into
-`dependencies`. A production-only install simulation and local build now pass;
-the fix is committed locally but has not been pushed.
+`dependencies`. A production-only install simulation and local build passed.
+Fix commit `d67a0296281fa569eb49e66a5c16f6749f789f46` was pushed to `master`
+and Hostinger reports that deployment as completed/current.
+
+The approved migration attempt stopped before any database change because the
+SSH shell did not expose `npm`, and the deployed source did not have a local
+dependency tree. Using Hostinger's Node 22 binary and active release tree still
+could not resolve `server-only` or `mysql2` for the source-side CLI. The local
+fix removes unnecessary Next-only `server-only` guards from the migration
+dependency chain; `mysql2` and `server-only` remain runtime dependencies. No
+migration or destructive retry was performed.
 
 Execution record, 2026-10-07:
 
@@ -67,12 +76,14 @@ application process; a static-export deployment is not sufficient.
 
 1. Production MySQL schema has not been migrated and the first administrator
    has not been created.
-2. A controlled, approved migration-runner location has not been confirmed.
-   Migrations must finish before the release reaches the auto-deploy branch.
+2. Hostinger's deployed runtime does not expose the complete dependency tree to
+   the SSH command runner, so a supported migration execution method is still
+   required.
 3. Production environment values are configured privately in Hostinger.
 4. The upload route and media reader are deliberately disabled when
    `NODE_ENV=production`. No durable Hostinger media storage has been approved.
-5. The Phase 1–3 source changes have not been committed or reviewed for release.
+5. The Phase 1–3 source changes are deployed in the current release, but the
+   database gate remains incomplete.
 
 ## Migration ordering with auto-deploy
 

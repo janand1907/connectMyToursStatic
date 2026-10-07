@@ -22,8 +22,16 @@ before deployment with a missing `tailwindcss` module under its production-only
 dependency install. The migration remains unrun; no retry or rollback command
 was issued.
 
-The dependency correction is now validated locally and committed separately.
-Migration remains pending until that correction is deployed successfully.
+The dependency correction is now validated locally, committed as
+`d67a0296281fa569eb49e66a5c16f6749f789f46`, pushed, and deployed successfully.
+The approved migration attempt stopped before connecting because Hostinger's
+SSH shell did not expose `npm`; using the Node 22 binary and active release
+dependencies then showed that `server-only` and `mysql2` were not available to
+the source-side runner. No schema change occurred and no destructive retry was
+made. Migration remains pending until Hostinger provides a supported command
+environment with the complete application dependencies. The local runner fix
+also removes unnecessary `server-only` imports from the migration CLI's
+dependency chain while preserving those guards for request-facing modules.
 
 ## Before requesting execution approval
 
