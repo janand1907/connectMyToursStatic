@@ -8,6 +8,15 @@ current-master redeploy are complete. A temporary SSH inspection runner was
 disabled. Migration approval exists, but execution is paused until the reviewed
 blog release is deployed or an approved runner contains its migration command.
 
+The first reviewed blog release was pushed to `master`, but Hostinger build
+failed before deployment because `tailwindcss` was not installed in the
+production dependency set. The previous revision remains active; migration and
+admin gates are blocked until a corrected release is separately approved.
+
+The corrected local release places Tailwind, PostCSS, and Autoprefixer in
+production dependencies. It is ready for a separate controlled redeploy
+approval; no migration has been run.
+
 Database/user creation, backup completion, and private runtime-variable
 application are complete. Applying the variables redeployed master commit
 `40cfa127`; no blog code, migrations, or admin provisioning were deployed.

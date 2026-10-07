@@ -52,6 +52,15 @@ was enabled and disabled. Migration approval was granted, but execution is
 paused because current master does not contain the blog migration command or
 files. First admin creation, Git push, and new-code deployment remain gated.
 
+Commit `35753cf6` was pushed to `master`, but Hostinger's build failed before
+deployment because `tailwindcss` was unavailable under production-only npm
+installation. The previous revision remains active; migration and admin
+provisioning were not attempted.
+
+The local dependency fix moves Tailwind, PostCSS, and Autoprefixer into runtime
+dependencies required by the production build. Local tests, lint, build, and a
+production-only install simulation pass. The fix is not pushed yet.
+
 Hostinger database/user creation and the pre-migration backup are complete.
 Applying runtime variables redeployed current master commit `40cfa127`; no local
 uncommitted blog code was deployed.

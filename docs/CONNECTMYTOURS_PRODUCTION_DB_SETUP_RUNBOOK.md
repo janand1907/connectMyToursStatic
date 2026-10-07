@@ -17,6 +17,14 @@ The migration command was not run: `npm run blog:migrate` is absent from the
 current deployed `master` package, and the deployed tree has no blog migration
 files. No code was uploaded or changed on the server.
 
+The approved release commit was later pushed, but Hostinger's build failed
+before deployment with a missing `tailwindcss` module under its production-only
+dependency install. The migration remains unrun; no retry or rollback command
+was issued.
+
+The dependency correction is now validated locally and committed separately.
+Migration remains pending until that correction is deployed successfully.
+
 ## Before requesting execution approval
 
 - The reviewed release candidate is identified by a local Git commit but has not

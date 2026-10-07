@@ -10,6 +10,16 @@ committed `master` revision remains deployed. Production migration is still
 blocked because that revision has no `blog:migrate` script or blog migration
 files; running local uncommitted code against production is not permitted.
 
+Release-candidate update, 2026-10-07: commit `35753cf6` was pushed to `master`
+as approved. Hostinger checked out that commit but the build failed before
+deployment because `tailwindcss` was unavailable while installing production
+dependencies. The previous working revision remains active. Migration was not
+run and the failure requires a separate local dependency/build fix approval.
+
+The local fix moves the Tailwind/PostCSS/Autoprefixer build dependencies into
+`dependencies`. A production-only install simulation and local build now pass;
+the fix is committed locally but has not been pushed.
+
 Execution record, 2026-10-07:
 
 - A dedicated Connect My Tours blog database and database user were created in

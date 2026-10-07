@@ -127,3 +127,13 @@ Hostinger phpMyAdmin. Git was not committed or pushed. Existing live homepage,
 contact/enquiry, and package pages remained reachable; no debug output was
 observed. Blog smoke tests remain pending until the reviewed blog commit is
 intentionally deployed.
+
+The reviewed commit was subsequently pushed to `master`, but Hostinger's build
+failed before deployment because `tailwindcss` was missing from the production
+install. No migration, admin creation, retry, or manual SQL followed the
+failure.
+
+The correction moves `tailwindcss`, `postcss`, and `autoprefixer` into
+production dependencies. Blog tests, lint, build, diff checks, and a disposable
+production-only dependency install simulation pass. The correction remains
+local and unpushed.
