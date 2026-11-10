@@ -74,7 +74,7 @@ function escapeHtml(value) {
   );
 }
 
-function buildEmail({ name, phone, email, departureCity, travelDate, persons, packageInterested, message, source, ip, userAgent }) {
+function buildEmail({ name, phone, email, departureCity, pickupLocation, travelDate, persons, children, packageInterested, vehiclePreference, message, source, pageUrl, ip, userAgent }) {
   const timestamp = new Date().toLocaleString("en-IN", {
     timeZone: "Asia/Kolkata",
     dateStyle: "medium",
@@ -86,11 +86,15 @@ function buildEmail({ name, phone, email, departureCity, travelDate, persons, pa
     ["Phone", phone],
     ["Email", email || "-"],
     ["Departure City", departureCity || "-"],
+    ["Pickup Location / Airport", pickupLocation || "-"],
     ["Package Interested", packageInterested || "-"],
     ["Travel Date", travelDate || "-"],
     ["Number of Persons", persons || "-"],
+    ["Number of Children", children || "-"],
+    ["Vehicle Preference", vehiclePreference || "-"],
     ["Message", message || "-"],
     ["Submitted Page", source || "-"],
+    ["Page URL", pageUrl || "-"],
     ["Timestamp", `${timestamp} IST`],
     ["IP Address", ip || "-"],
     ["User Agent", userAgent || "-"],
@@ -127,6 +131,12 @@ function buildEmail({ name, phone, email, departureCity, travelDate, persons, pa
 export async function POST(request) {
   const ip = getClientIp(request);
 
+  const origin = request.headers.get("origin");
+  const requestHost = request.headers.get("host");
+  if (origin && requestHost && new URL(origin).host !== requestHost) {
+    return Response.json({ ok: false, error: "Invalid request origin." }, { status: 403 });
+  }
+
   if (isRateLimited(ip)) {
     return Response.json({ ok: false, error: "Too many requests. Please try again later." }, { status: 429 });
   }
@@ -149,7 +159,7 @@ export async function POST(request) {
     return Response.json({ ok: false, error: errors.join(", ") }, { status: 400 });
   }
 
-  const { name, phone, email, departureCity, travelDate, persons, packageInterested, message, source } = body;
+  const { name, phone, email, departureCity, pickupLocation, travelDate, persons, children, packageInterested, vehiclePreference, message, source, pageUrl } = body;
 
   if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
     // eslint-disable-next-line no-console
@@ -176,11 +186,15 @@ export async function POST(request) {
     phone,
     email,
     departureCity,
+    pickupLocation,
     travelDate,
     persons,
+    children,
     packageInterested,
+    vehiclePreference,
     message,
     source,
+    pageUrl,
     ip,
     userAgent: request.headers.get("user-agent") || "",
   });

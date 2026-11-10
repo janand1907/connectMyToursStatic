@@ -1,5 +1,9 @@
 // Centralized per-route SEO copy. Keyed by pathname. Consumed by lib/seo.js.
 export const seoConfig = {
+  "/rameshwaram-tour-packages": {
+    title: "Rameshwaram Tour Packages | Private Cab & Temple Tours",
+    description: "Explore Rameshwaram tour packages with private AC cabs, Madurai Airport pickup, temple visits and custom itineraries. Get a quote from Connect My Tours.",
+  },
   "/": {
     title: "Tirupati Pilgrimage Travel Assistance | Connect My Tours",
     description:
