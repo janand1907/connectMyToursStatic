@@ -46,3 +46,24 @@ body {
     line-height: 1.14 !important;
   }
 }
+
+@media (min-width: 1280px) {
+  .rameshwaram-page > section:first-child .container-page {
+    max-width: 80rem;
+    grid-template-columns: minmax(0, 1.3fr) minmax(20rem, 0.7fr);
+  }
+
+  .rameshwaram-page h1 {
+    font-size: 0 !important;
+    line-height: 0 !important;
+  }
+
+  .rameshwaram-page h1::after {
+    content: "Rameshwaram Tour Packages\A Private Cab, Temple Visits & Custom Trips";
+    display: block;
+    white-space: pre;
+    font-size: clamp(2.25rem, 2.7vw, 2.7rem);
+    font-weight: 700;
+    line-height: 1.14;
+  }
+}
