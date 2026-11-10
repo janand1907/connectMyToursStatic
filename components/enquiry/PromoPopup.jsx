@@ -14,7 +14,7 @@ import {
 // Timer-based reopen behaviour — no sessionStorage/localStorage/cookies, so the
 // popup keeps resurfacing for the whole visit rather than being dismissed forever.
 const POPUP_INITIAL_DELAY = 6000;
-const POPUP_REOPEN_INTERVAL = 120000;
+const POPUP_REOPEN_INTERVAL = 240000;
 const EXIT_ANIMATION_MS = 200;
 
 const packageCombos = [

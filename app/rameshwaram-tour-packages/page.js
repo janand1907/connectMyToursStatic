@@ -12,5 +12,5 @@ const faqData = [
 ];
 
 export default function RameshwaramTourPackagesPage() {
-  return <><JsonLd data={breadcrumbSchema([{ label: "Home", href: "/" }, { label: "Rameshwaram Tour Packages", href: "/rameshwaram-tour-packages" }])} /><JsonLd data={faqSchema(faqData)} /><JsonLd data={{ "@context": "https://schema.org", "@type": "TouristTrip", name: "Rameshwaram Tour Packages", url: "https://www.connectmytours.com/rameshwaram-tour-packages", description: "Private cab and custom pilgrimage tour planning for Rameshwaram and South India.", provider: { "@type": "TravelAgency", name: "Connect My Tours", url: "https://www.connectmytours.com" } }} /><RameshwaramLanding /></>;
+  return <><JsonLd data={breadcrumbSchema([{ label: "Home", href: "/" }, { label: "Rameshwaram Tour Packages", href: "/rameshwaram-tour-packages" }])} /><JsonLd data={faqSchema(faqData)} /><JsonLd data={{ "@context": "https://schema.org", "@type": "TouristTrip", name: "Rameshwaram Tour Packages", url: "https://www.connectmytours.com/rameshwaram-tour-packages", description: "Private cab and custom pilgrimage tour planning for Rameshwaram and South India.", provider: { "@type": "TravelAgency", name: "Connect My Tours", url: "https://www.connectmytours.com" } }} /><div className="rameshwaram-page"><RameshwaramLanding /></div></>;
 }

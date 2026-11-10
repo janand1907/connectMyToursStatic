@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PromoPopupGate from "@/components/enquiry/PromoPopupGate";
+import MainContent from "@/components/layout/MainContent";
 import { pageMetadata, travelAgencySchema, JsonLd } from "@/lib/seo";
 
 export const metadata = {
@@ -25,7 +26,7 @@ export default function RootLayout({ children }) {
           Skip to main content
         </a>
         <Navbar />
-        <main id="main-content" className="pt-16">{children}</main>
+        <MainContent>{children}</MainContent>
         <Footer />
         <PromoPopupGate />
       </body>

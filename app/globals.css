@@ -39,3 +39,10 @@ body {
 .card {
   @apply rounded-2xl bg-white shadow-card;
 }
+
+@media (min-width: 640px) {
+  .rameshwaram-page h1 {
+    font-size: clamp(2.5rem, 3vw, 2.875rem) !important;
+    line-height: 1.14 !important;
+  }
+}
