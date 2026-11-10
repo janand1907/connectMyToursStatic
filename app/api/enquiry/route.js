@@ -34,6 +34,13 @@ function validate(body) {
   if (!body.name || !String(body.name).trim()) errors.push("name is required");
   if (!body.phone || !isValidPhone(body.phone)) errors.push("a valid phone number is required");
   if (body.email && !isValidEmail(String(body.email))) errors.push("email is invalid");
+  if (body.source === "rameshwaram-tour-packages") {
+    if (!body.departureCity) errors.push("pickup city is required");
+    if (!body.persons || !/^\d+$/.test(String(body.persons)) || Number(body.persons) < 1) errors.push("at least one adult is required");
+    if (!body.packageInterested) errors.push("package selection is required");
+    if (body.children && (!/^\d+$/.test(String(body.children)) || Number(body.children) < 0)) errors.push("children count is invalid");
+    if (body.travelDate && Number.isNaN(Date.parse(body.travelDate))) errors.push("travel date is invalid");
+  }
   return errors;
 }
 
