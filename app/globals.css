@@ -62,7 +62,7 @@ body {
     content: "Rameshwaram Tour Packages\A Private Cab, Temple Visits & Custom Trips";
     display: block;
     white-space: pre;
-    font-size: clamp(2.25rem, 2.7vw, 2.7rem);
+    font-size: clamp(2rem, 2.15vw, 2.15rem);
     font-weight: 700;
     line-height: 1.14;
   }
