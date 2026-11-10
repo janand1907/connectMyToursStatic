@@ -16,11 +16,19 @@ export default function NavDropdown({ item }) {
     closeTimeout.current = setTimeout(() => setOpen(false), 150);
   }
 
+  function handleKeyDown(event) {
+    if (event.key === "Escape") {
+      setOpen(false);
+      event.currentTarget.querySelector("button")?.focus();
+    }
+  }
+
   return (
     <div
       className="relative"
       onMouseEnter={openMenu}
       onMouseLeave={scheduleClose}
+      onKeyDown={handleKeyDown}
     >
       <div className="flex items-center gap-1">
         <Link

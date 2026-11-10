@@ -22,8 +22,13 @@ export const navLinks = [
   // Temporarily hidden from the main menu — re-enable when ready.
   // { label: "Tirupati", href: "/tirupati" },
   { label: "Kerala", href: "/kerala" },
-  { label: "Rameshwaram Tours", href: "/rameshwaram-tour-packages" },
-  { label: "South India", href: "/south-india" },
+  {
+    label: "South India",
+    href: "/south-india",
+    children: [
+      { label: "Rameshwaram Tour Packages", href: "/rameshwaram-tour-packages" },
+    ],
+  },
 ];
 
 export const footerQuickLinks = [
